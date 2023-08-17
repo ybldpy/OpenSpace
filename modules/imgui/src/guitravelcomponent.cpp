@@ -145,6 +145,7 @@ void GuiTravelComponent::render() {
         }
         ImGui::EndListBox();
     }
+    int c = 1212;
     if (ImGui::Button("Add node")) {
 
         for (auto& entry : tselectableState) {
