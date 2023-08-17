@@ -242,6 +242,10 @@ ImGUIModule::ImGUIModule()
     );
 }
 
+std::vector<scripting::LuaLibrary> ImGUIModule::luaLibraries() const{
+    return { gui::GuiTravelComponent::luaLibrary() };
+}
+
 void ImGUIModule::internalInitialize(const ghoul::Dictionary&) {
     LDEBUGC("ImGUIModule", "Initializing GUI");
 
@@ -277,6 +281,10 @@ void ImGUIModule::internalDeinitialize() {
     for (gui::GuiComponent* comp : _components) {
         comp->deinitialize();
     }
+}
+
+gui::GuiTravelComponent& ImGUIModule::guiTravelComopnent() {
+    return this->_planetTravel;
 }
 
 void ImGUIModule::internalInitializeGL() {

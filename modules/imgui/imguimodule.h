@@ -39,6 +39,7 @@
 #include <modules/imgui/include/guipropertycomponent.h>
 #include <modules/imgui/include/guiscenecomponent.h>
 #include <modules/imgui/include/guispacetimecomponent.h>
+#include <modules/imgui/include/guitravelcomponent.h>
 #include <openspace/properties/scalar/boolproperty.h>
 #include <openspace/properties/scalar/floatproperty.h>
 #include <openspace/util/keys.h>
@@ -64,6 +65,8 @@ public:
     void internalDeinitialize() override;
     void internalInitializeGL() override;
     void internalDeinitializeGL() override;
+    gui::GuiTravelComponent& guiTravelComopnent();
+    std::vector<scripting::LuaLibrary> luaLibraries() const override;
 
 private:
     bool mouseButtonCallback(MouseButton button, MouseAction action);
@@ -95,16 +98,18 @@ private:
     gui::GuiSceneComponent _sceneView;
     gui::GuiFilePathComponent _filePath;
     gui::GuiHelpComponent _help;
+    gui::GuiTravelComponent _planetTravel;
 
     properties::BoolProperty _showHelpText;
     properties::FloatProperty _helpTextDelay;
 
     // The ordering of this array determines the order of components in the in-game menu
-    static constexpr int nComponents = 13;
+    static constexpr int nComponents = 14;
     std::array<gui::GuiComponent*, nComponents> _components = {
         &_sceneProperty,
         &_property,
         &_spaceTime,
+        &_planetTravel,
         &_joystick,
         &_actions,
         &_parallel,

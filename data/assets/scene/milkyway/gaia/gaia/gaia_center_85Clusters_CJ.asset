@@ -1,0 +1,1451 @@
+local cluster0 =  { 
+	 Identifier = "Gaia_Cluster_0", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-7.759400754338099e+18,-7.596522451178661e+18,-2.6740481921204193e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2383", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster1 =  { 
+	 Identifier = "Gaia_Cluster_1", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {9.711337054797074e+18,7.114029664128347e+18,1.756336822609071e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_6633", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster2 =  { 
+	 Identifier = "Gaia_Cluster_2", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {4.07917225735033e+18,-5.10488378729704e+17,1.4681619930779105e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2442_gp2", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster3 =  { 
+	 Identifier = "Gaia_Cluster_3", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {1.2689087277230313e+19,-3.844821765735338e+18,-4.042526914026956e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Mamajek_4", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster4 =  { 
+	 Identifier = "Gaia_Cluster_4", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.0704606672422191e+19,3.9141602819979863e+18,-2.976882094932681e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "UBC_31_gp2", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster5 =  { 
+	 Identifier = "Gaia_Cluster_5", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.0710511980393624e+19,-1.680664332774108e+19,-2.7910787691503334e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Gulliver_21", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster6 =  { 
+	 Identifier = "Gaia_Cluster_6", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.1100860436151222e+19,3.5493412391312543e+18,-4.076721432094217e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "UBC_19", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster7 =  { 
+	 Identifier = "Gaia_Cluster_7", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-8.737863835372087e+18,3.132781692818304e+18,-2.986175447536546e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "IC_348", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster8 =  { 
+	 Identifier = "Gaia_Cluster_8", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-9.806081675706264e+18,-5.502327826964347e+18,-3.983871939460646e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2373", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster9 =  { 
+	 Identifier = "Gaia_Cluster_9", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-9.345488835143522e+18,-4.200443982330155e+18,-3.2117370989589606e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2373_gp3", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster10 =  { 
+	 Identifier = "Gaia_Cluster_10", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {4.403053672877774e+18,-5.677268139197922e+17,1.6689918913779446e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2442_gp5", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster11 =  { 
+	 Identifier = "Gaia_Cluster_11", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {9.773270559854506e+18,4.940328047843653e+18,2.8986380480901985e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Collinder_350", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster12 =  { 
+	 Identifier = "Gaia_Cluster_12", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {4.930766871750223e+18,-1.3904065593827754e+19,3.4736843545168826e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_3532", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster13 =  { 
+	 Identifier = "Gaia_Cluster_13", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {8.594318809966936e+18,-6.301956399945252e+17,-6.737818359446664e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_6475", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster14 =  { 
+	 Identifier = "Gaia_Cluster_14", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-4.915756652984703e+18,1.379396197084875e+19,-2.5768432979552413e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "RSG_8", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster15 =  { 
+	 Identifier = "Gaia_Cluster_15", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.1503842933899849e+18,-1.1759633317308924e+19,-1.7935842278434225e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_2547", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster16 =  { 
+	 Identifier = "Gaia_Cluster_16", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.0942573258301854e+19,-5.185448580510521e+18,-3.9624228869873684e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Gulliver_6", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster17 =  { 
+	 Identifier = "Gaia_Cluster_17", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {8.828671777476e+18,5.201371632074025e+18,3.137131646746185e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "IC_4665", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster18 =  { 
+	 Identifier = "Gaia_Cluster_18", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.955107356187084e+18,-1.1825124645927215e+19,-2.1785670887977395e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Huluwa_3", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster19 =  { 
+	 Identifier = "Gaia_Cluster_19", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {7.882294299585785e+18,1.5322001113229298e+19,6.671971809412751e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "ASCC_105", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster20 =  { 
+	 Identifier = "Gaia_Cluster_20", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.8285164315630295e+18,-8.070075434793757e+18,-2.2344793948297848e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Alessi_3", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster21 =  { 
+	 Identifier = "Gaia_Cluster_21", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-4.867393910153585e+18,-1.0673973329166655e+19,-1.6161652451407089e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Collinder_140", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster22 =  { 
+	 Identifier = "Gaia_Cluster_22", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {3.979514222006285e+18,-5.771900174251488e+17,1.4860623232462426e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2442_gp1", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster23 =  { 
+	 Identifier = "Gaia_Cluster_23", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {8.987905787016786e+18,-9.213807861809916e+18,-1.397354806996109e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "BH_164", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster24 =  { 
+	 Identifier = "Gaia_Cluster_24", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-4.3333942499038024e+18,-2.1125579376908974e+18,3.055100464846263e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Praesepe", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster25 =  { 
+	 Identifier = "Gaia_Cluster_25", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-9.857389888923015e+18,2.579125035519791e+18,-2.4747134203560765e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "UBC_31_gp1", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster26 =  { 
+	 Identifier = "Gaia_Cluster_26", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-6.846712208956472e+18,-5.425078325681304e+18,-3.267262723118226e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2439", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster27 =  { 
+	 Identifier = "Gaia_Cluster_27", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-3.3731007340133345e+18,-1.0609415800696185e+19,-1.3851683805254282e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_2451B", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster28 =  { 
+	 Identifier = "Gaia_Cluster_28", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-7.381777080066259e+18,1.1677559359450528e+19,-3.08463940959479e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Alessi_20_isl1", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster29 =  { 
+	 Identifier = "Gaia_Cluster_29", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-9.531452104682367e+18,-3.779822395077947e+18,-3.369360955615106e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2373_gp2", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster30 =  { 
+	 Identifier = "Gaia_Cluster_30", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {2.7832049889353e+18,-1.4582836060558285e+19,1.1317960610630682e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_3228", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster31 =  { 
+	 Identifier = "Gaia_Cluster_31", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.0346609099998618e+19,3.135607865756179e+18,-2.8602220682284063e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "UBC_31", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster32 =  { 
+	 Identifier = "Gaia_Cluster_32", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {4.437063116379799e+18,-6.687011001072806e+17,1.4610248745885358e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2442_gp4", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster33 =  { 
+	 Identifier = "Gaia_Cluster_33", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.3024886409386461e+19,6.149634750956594e+18,3.43237672964195e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2429", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster34 =  { 
+	 Identifier = "Gaia_Cluster_34", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {1.2402120799400413e+19,-7.438137610097314e+18,-3.757103135237909e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Alessi_24", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster35 =  { 
+	 Identifier = "Gaia_Cluster_35", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-3.7398105255080197e+18,8.980484099821606e+17,-1.673275009535151e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Pleiades", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster36 =  { 
+	 Identifier = "Gaia_Cluster_36", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-4.196074311178769e+18,1.225662439343836e+19,1.967678457762611e+16} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "RSG_7", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster37 =  { 
+	 Identifier = "Gaia_Cluster_37", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {8.611144323439204e+18,3.302476486892254e+18,-2.0830126993133834e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_6774", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster38 =  { 
+	 Identifier = "Gaia_Cluster_38", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-2.1912216749577936e+17,-2.1646614122310323e+17,2.6246031383177615e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Coma_Berenices", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster39 =  { 
+	 Identifier = "Gaia_Cluster_39", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {5.183313743558186e+18,-1.56421013774136e+18,4.241408331235755e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2442", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster40 =  { 
+	 Identifier = "Gaia_Cluster_40", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {3.8663413287419105e+18,-1.3220830761324046e+19,-9.538125291281192e+16} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "BH_99", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster41 =  { 
+	 Identifier = "Gaia_Cluster_41", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {1.4100565169836114e+19,-8.282732407198922e+17,-1.9354841857483005e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_6405", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster42 =  { 
+	 Identifier = "Gaia_Cluster_42", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {6.080073789464438e+18,-1.746805984803252e+18,-1.0028061547748018e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Alessi_9", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster43 =  { 
+	 Identifier = "Gaia_Cluster_43", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.340564097024302e+18,-1.5222097181104267e+19,-1.465340215106016e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2388", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster44 =  { 
+	 Identifier = "Gaia_Cluster_44", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.3862375387364285e+18,-1.2081287402143506e+19,-1.9393961194453688e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Huluwa_2", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster45 =  { 
+	 Identifier = "Gaia_Cluster_45", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.4304726548166056e+19,1.2035922766421037e+19,8.045310894203837e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Stock_23", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster46 =  { 
+	 Identifier = "Gaia_Cluster_46", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-4.3228918757810294e+18,1.0659164637503779e+19,9.160308620285046e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "ASCC_127", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster47 =  { 
+	 Identifier = "Gaia_Cluster_47", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-3.1992264429884915e+17,9.151508681439733e+18,-3.5488347313469037e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_7092", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster48 =  { 
+	 Identifier = "Gaia_Cluster_48", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {1.5636913728923028e+18,-4.3957029690523884e+18,-4.1432499072987386e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "IC_2602", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster49 =  { 
+	 Identifier = "Gaia_Cluster_49", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {7.532391900812353e+18,1.4939636812499956e+19,-1.1892504908338038e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "UPK_82", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster50 =  { 
+	 Identifier = "Gaia_Cluster_50", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {4.2870675731274025e+18,9.792037682786388e+18,2.969316452447806e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Stephenson_1", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster51 =  { 
+	 Identifier = "Gaia_Cluster_51", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {8.27200186983534e+17,-1.2152201280339413e+19,-3.469344308258593e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_2516", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster52 =  { 
+	 Identifier = "Gaia_Cluster_52", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.7808328362351803e+18,-5.618770831074118e+18,-7.50841596967655e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_2451A", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster53 =  { 
+	 Identifier = "Gaia_Cluster_53", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-9.43586141010171e+18,-3.6951444031031997e+18,-3.3837556903822433e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "ASCC_16", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster54 =  { 
+	 Identifier = "Gaia_Cluster_54", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {3.803600839008748e+18,-1.164931765223213e+19,-4.224281549285404e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Alessi_5", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster55 =  { 
+	 Identifier = "Gaia_Cluster_55", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {1.3463386286287485e+18,3.394157553649566e+17,-7.1498704895788e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Blanco_1", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster56 =  { 
+	 Identifier = "Gaia_Cluster_56", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-2.903017569363477e+18,-1.0546089680012616e+19,3.416934145386764e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Huluwa_5", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster57 =  { 
+	 Identifier = "Gaia_Cluster_57", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-5.319440336965175e+18,1.1403115680368177e+19,-1.3312544611861376e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Alessi_20_gp1", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster58 =  { 
+	 Identifier = "Gaia_Cluster_58", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.0040974598381541e+19,-3.980494122089092e+18,-3.432112295592009e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2371", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster59 =  { 
+	 Identifier = "Gaia_Cluster_59", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {3.1448549597665436e+16,-4.641619934569411e+18,-5.495042268409284e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "IC_2391", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster60 =  { 
+	 Identifier = "Gaia_Cluster_60", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {4.06832975836189e+18,-6.340840541907296e+17,1.6188916676071475e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2442_gp3", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster61 =  { 
+	 Identifier = "Gaia_Cluster_61", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {1.627480641071315e+18,-1.0651737582991661e+19,-7.130658037761938e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_1901", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster62 =  { 
+	 Identifier = "Gaia_Cluster_62", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-9.161050787590667e+18,9.64030866829343e+18,1.9828737979654034e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2428", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster63 =  { 
+	 Identifier = "Gaia_Cluster_63", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-8.78363912958929e+18,-4.095173742755816e+18,-3.6225583339472737e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2373_gp1", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster64 =  { 
+	 Identifier = "Gaia_Cluster_64", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.0042383515858428e+19,-5.481415986519174e+18,-3.9632320651622395e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_1977", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster65 =  { 
+	 Identifier = "Gaia_Cluster_65", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.7444803952688093e+17,1.74434838767174e+18,2.558472240696452e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Group_X", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster66 =  { 
+	 Identifier = "Gaia_Cluster_66", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-9.35346255719105e+18,-4.3643900138064835e+18,-3.6438317560307313e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "ASCC_19", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster67 =  { 
+	 Identifier = "Gaia_Cluster_67", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-5.657744571617649e+18,1.1747758090618374e+19,-8.418506492816104e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Alessi_20", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster68 =  { 
+	 Identifier = "Gaia_Cluster_68", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {8.207096813770099e+18,2.731316183482398e+18,-5.314328694884447e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2441", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster69 =  { 
+	 Identifier = "Gaia_Cluster_69", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-8.11722078147182e+18,-5.407249152909797e+18,-1.300366026770912e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_2232", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster70 =  { 
+	 Identifier = "Gaia_Cluster_70", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-9.709543320465535e+18,-5.463494069473338e+18,-3.9672352221265316e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_1980", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster71 =  { 
+	 Identifier = "Gaia_Cluster_71", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-9.253960310144035e+18,-1.1396877309355538e+19,7.907081910700184e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_2422", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster72 =  { 
+	 Identifier = "Gaia_Cluster_72", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-2.999195957131534e+18,-7.798122547232136e+18,-1.9492115079510198e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "UBC_7", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster73 =  { 
+	 Identifier = "Gaia_Cluster_73", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-9.559813282832644e+18,-4.699203578057949e+18,-3.379698573899187e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "LP_2373_gp4", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster74 =  { 
+	 Identifier = "Gaia_Cluster_74", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {5.285840230369628e+18,1.581791370881892e+19,6.393464322230181e+16} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Roslund_5", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster75 =  { 
+	 Identifier = "Gaia_Cluster_75", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.4569787389688845e+18,-1.0756147436197972e+19,-1.401045467445344e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Huluwa_1", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster76 =  { 
+	 Identifier = "Gaia_Cluster_76", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-4.87400193144199e+18,1.2432841972740964e+19,-1.9931486416704238e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Stock_12", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster77 =  { 
+	 Identifier = "Gaia_Cluster_77", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-5.777850069300968e+17,1.1258143377296224e+19,1.1345549254894046e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "NGC_7058", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster78 =  { 
+	 Identifier = "Gaia_Cluster_78", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.1616929097402749e+19,-3.1475703014968945e+18,-2.564750506044399e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Collinder_69", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster79 =  { 
+	 Identifier = "Gaia_Cluster_79", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-3.24930034152212e+18,-8.608762168441098e+18,-1.7947921408545661e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Collinder_135", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster80 =  { 
+	 Identifier = "Gaia_Cluster_80", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {1.1416052489388532e+19,1.5048782967575525e+19,2.8698799428605937e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Alessi_62", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster81 =  { 
+	 Identifier = "Gaia_Cluster_81", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {1.1740264373365e+19,8.606966777688443e+18,1.377857482148158e+18} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "IC_4756", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster82 =  { 
+	 Identifier = "Gaia_Cluster_82", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {3.0476428422780457e+18,-1.4372399423173835e+19,2.5101234521144102e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "ASCC_58", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster83 =  { 
+	 Identifier = "Gaia_Cluster_83", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {-1.9965312120934922e+18,-1.035573848966478e+19,-3.994485215002658e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Huluwa_4", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+local cluster84 =  { 
+	 Identifier = "Gaia_Cluster_84", 
+	 Transform = { 
+		 Translation = { 
+			 Type = "StaticTranslation", 
+			 Position = {6.217566270443148e+18,1.0867731756591944e+19,4.675665525682238e+17} 
+		 } 
+	 }, 
+	 GUI = { 
+		 Name = "Stock_1", 
+		 Path = "/Milky Way/Gaia/Cluster Center"  
+	 } 
+ } 
+
+ asset.onInitialize(function() 
+	 openspace.addSceneGraphNode(cluster0) 
+	 openspace.addSceneGraphNode(cluster1) 
+	 openspace.addSceneGraphNode(cluster2) 
+	 openspace.addSceneGraphNode(cluster3) 
+	 openspace.addSceneGraphNode(cluster4) 
+	 openspace.addSceneGraphNode(cluster5) 
+	 openspace.addSceneGraphNode(cluster6) 
+	 openspace.addSceneGraphNode(cluster7) 
+	 openspace.addSceneGraphNode(cluster8) 
+	 openspace.addSceneGraphNode(cluster9) 
+	 openspace.addSceneGraphNode(cluster10) 
+	 openspace.addSceneGraphNode(cluster11) 
+	 openspace.addSceneGraphNode(cluster12) 
+	 openspace.addSceneGraphNode(cluster13) 
+	 openspace.addSceneGraphNode(cluster14) 
+	 openspace.addSceneGraphNode(cluster15) 
+	 openspace.addSceneGraphNode(cluster16) 
+	 openspace.addSceneGraphNode(cluster17) 
+	 openspace.addSceneGraphNode(cluster18) 
+	 openspace.addSceneGraphNode(cluster19) 
+	 openspace.addSceneGraphNode(cluster20) 
+	 openspace.addSceneGraphNode(cluster21) 
+	 openspace.addSceneGraphNode(cluster22) 
+	 openspace.addSceneGraphNode(cluster23) 
+	 openspace.addSceneGraphNode(cluster24) 
+	 openspace.addSceneGraphNode(cluster25) 
+	 openspace.addSceneGraphNode(cluster26) 
+	 openspace.addSceneGraphNode(cluster27) 
+	 openspace.addSceneGraphNode(cluster28) 
+	 openspace.addSceneGraphNode(cluster29) 
+	 openspace.addSceneGraphNode(cluster30) 
+	 openspace.addSceneGraphNode(cluster31) 
+	 openspace.addSceneGraphNode(cluster32) 
+	 openspace.addSceneGraphNode(cluster33) 
+	 openspace.addSceneGraphNode(cluster34) 
+	 openspace.addSceneGraphNode(cluster35) 
+	 openspace.addSceneGraphNode(cluster36) 
+	 openspace.addSceneGraphNode(cluster37) 
+	 openspace.addSceneGraphNode(cluster38) 
+	 openspace.addSceneGraphNode(cluster39) 
+	 openspace.addSceneGraphNode(cluster40) 
+	 openspace.addSceneGraphNode(cluster41) 
+	 openspace.addSceneGraphNode(cluster42) 
+	 openspace.addSceneGraphNode(cluster43) 
+	 openspace.addSceneGraphNode(cluster44) 
+	 openspace.addSceneGraphNode(cluster45) 
+	 openspace.addSceneGraphNode(cluster46) 
+	 openspace.addSceneGraphNode(cluster47) 
+	 openspace.addSceneGraphNode(cluster48) 
+	 openspace.addSceneGraphNode(cluster49) 
+	 openspace.addSceneGraphNode(cluster50) 
+	 openspace.addSceneGraphNode(cluster51) 
+	 openspace.addSceneGraphNode(cluster52) 
+	 openspace.addSceneGraphNode(cluster53) 
+	 openspace.addSceneGraphNode(cluster54) 
+	 openspace.addSceneGraphNode(cluster55) 
+	 openspace.addSceneGraphNode(cluster56) 
+	 openspace.addSceneGraphNode(cluster57) 
+	 openspace.addSceneGraphNode(cluster58) 
+	 openspace.addSceneGraphNode(cluster59) 
+	 openspace.addSceneGraphNode(cluster60) 
+	 openspace.addSceneGraphNode(cluster61) 
+	 openspace.addSceneGraphNode(cluster62) 
+	 openspace.addSceneGraphNode(cluster63) 
+	 openspace.addSceneGraphNode(cluster64) 
+	 openspace.addSceneGraphNode(cluster65) 
+	 openspace.addSceneGraphNode(cluster66) 
+	 openspace.addSceneGraphNode(cluster67) 
+	 openspace.addSceneGraphNode(cluster68) 
+	 openspace.addSceneGraphNode(cluster69) 
+	 openspace.addSceneGraphNode(cluster70) 
+	 openspace.addSceneGraphNode(cluster71) 
+	 openspace.addSceneGraphNode(cluster72) 
+	 openspace.addSceneGraphNode(cluster73) 
+	 openspace.addSceneGraphNode(cluster74) 
+	 openspace.addSceneGraphNode(cluster75) 
+	 openspace.addSceneGraphNode(cluster76) 
+	 openspace.addSceneGraphNode(cluster77) 
+	 openspace.addSceneGraphNode(cluster78) 
+	 openspace.addSceneGraphNode(cluster79) 
+	 openspace.addSceneGraphNode(cluster80) 
+	 openspace.addSceneGraphNode(cluster81) 
+	 openspace.addSceneGraphNode(cluster82) 
+	 openspace.addSceneGraphNode(cluster83) 
+	 openspace.addSceneGraphNode(cluster84) 
+ end) 
+
+ asset.onDeinitialize(function() 
+	 openspace.removeSceneGraphNode(cluster0) 
+	 openspace.removeSceneGraphNode(cluster1) 
+	 openspace.removeSceneGraphNode(cluster2) 
+	 openspace.removeSceneGraphNode(cluster3) 
+	 openspace.removeSceneGraphNode(cluster4) 
+	 openspace.removeSceneGraphNode(cluster5) 
+	 openspace.removeSceneGraphNode(cluster6) 
+	 openspace.removeSceneGraphNode(cluster7) 
+	 openspace.removeSceneGraphNode(cluster8) 
+	 openspace.removeSceneGraphNode(cluster9) 
+	 openspace.removeSceneGraphNode(cluster10) 
+	 openspace.removeSceneGraphNode(cluster11) 
+	 openspace.removeSceneGraphNode(cluster12) 
+	 openspace.removeSceneGraphNode(cluster13) 
+	 openspace.removeSceneGraphNode(cluster14) 
+	 openspace.removeSceneGraphNode(cluster15) 
+	 openspace.removeSceneGraphNode(cluster16) 
+	 openspace.removeSceneGraphNode(cluster17) 
+	 openspace.removeSceneGraphNode(cluster18) 
+	 openspace.removeSceneGraphNode(cluster19) 
+	 openspace.removeSceneGraphNode(cluster20) 
+	 openspace.removeSceneGraphNode(cluster21) 
+	 openspace.removeSceneGraphNode(cluster22) 
+	 openspace.removeSceneGraphNode(cluster23) 
+	 openspace.removeSceneGraphNode(cluster24) 
+	 openspace.removeSceneGraphNode(cluster25) 
+	 openspace.removeSceneGraphNode(cluster26) 
+	 openspace.removeSceneGraphNode(cluster27) 
+	 openspace.removeSceneGraphNode(cluster28) 
+	 openspace.removeSceneGraphNode(cluster29) 
+	 openspace.removeSceneGraphNode(cluster30) 
+	 openspace.removeSceneGraphNode(cluster31) 
+	 openspace.removeSceneGraphNode(cluster32) 
+	 openspace.removeSceneGraphNode(cluster33) 
+	 openspace.removeSceneGraphNode(cluster34) 
+	 openspace.removeSceneGraphNode(cluster35) 
+	 openspace.removeSceneGraphNode(cluster36) 
+	 openspace.removeSceneGraphNode(cluster37) 
+	 openspace.removeSceneGraphNode(cluster38) 
+	 openspace.removeSceneGraphNode(cluster39) 
+	 openspace.removeSceneGraphNode(cluster40) 
+	 openspace.removeSceneGraphNode(cluster41) 
+	 openspace.removeSceneGraphNode(cluster42) 
+	 openspace.removeSceneGraphNode(cluster43) 
+	 openspace.removeSceneGraphNode(cluster44) 
+	 openspace.removeSceneGraphNode(cluster45) 
+	 openspace.removeSceneGraphNode(cluster46) 
+	 openspace.removeSceneGraphNode(cluster47) 
+	 openspace.removeSceneGraphNode(cluster48) 
+	 openspace.removeSceneGraphNode(cluster49) 
+	 openspace.removeSceneGraphNode(cluster50) 
+	 openspace.removeSceneGraphNode(cluster51) 
+	 openspace.removeSceneGraphNode(cluster52) 
+	 openspace.removeSceneGraphNode(cluster53) 
+	 openspace.removeSceneGraphNode(cluster54) 
+	 openspace.removeSceneGraphNode(cluster55) 
+	 openspace.removeSceneGraphNode(cluster56) 
+	 openspace.removeSceneGraphNode(cluster57) 
+	 openspace.removeSceneGraphNode(cluster58) 
+	 openspace.removeSceneGraphNode(cluster59) 
+	 openspace.removeSceneGraphNode(cluster60) 
+	 openspace.removeSceneGraphNode(cluster61) 
+	 openspace.removeSceneGraphNode(cluster62) 
+	 openspace.removeSceneGraphNode(cluster63) 
+	 openspace.removeSceneGraphNode(cluster64) 
+	 openspace.removeSceneGraphNode(cluster65) 
+	 openspace.removeSceneGraphNode(cluster66) 
+	 openspace.removeSceneGraphNode(cluster67) 
+	 openspace.removeSceneGraphNode(cluster68) 
+	 openspace.removeSceneGraphNode(cluster69) 
+	 openspace.removeSceneGraphNode(cluster70) 
+	 openspace.removeSceneGraphNode(cluster71) 
+	 openspace.removeSceneGraphNode(cluster72) 
+	 openspace.removeSceneGraphNode(cluster73) 
+	 openspace.removeSceneGraphNode(cluster74) 
+	 openspace.removeSceneGraphNode(cluster75) 
+	 openspace.removeSceneGraphNode(cluster76) 
+	 openspace.removeSceneGraphNode(cluster77) 
+	 openspace.removeSceneGraphNode(cluster78) 
+	 openspace.removeSceneGraphNode(cluster79) 
+	 openspace.removeSceneGraphNode(cluster80) 
+	 openspace.removeSceneGraphNode(cluster81) 
+	 openspace.removeSceneGraphNode(cluster82) 
+	 openspace.removeSceneGraphNode(cluster83) 
+	 openspace.removeSceneGraphNode(cluster84) 
+ end) 
+
+asset.export(cluster0) 
+asset.export(cluster1) 
+asset.export(cluster2) 
+asset.export(cluster3) 
+asset.export(cluster4) 
+asset.export(cluster5) 
+asset.export(cluster6) 
+asset.export(cluster7) 
+asset.export(cluster8) 
+asset.export(cluster9) 
+asset.export(cluster10) 
+asset.export(cluster11) 
+asset.export(cluster12) 
+asset.export(cluster13) 
+asset.export(cluster14) 
+asset.export(cluster15) 
+asset.export(cluster16) 
+asset.export(cluster17) 
+asset.export(cluster18) 
+asset.export(cluster19) 
+asset.export(cluster20) 
+asset.export(cluster21) 
+asset.export(cluster22) 
+asset.export(cluster23) 
+asset.export(cluster24) 
+asset.export(cluster25) 
+asset.export(cluster26) 
+asset.export(cluster27) 
+asset.export(cluster28) 
+asset.export(cluster29) 
+asset.export(cluster30) 
+asset.export(cluster31) 
+asset.export(cluster32) 
+asset.export(cluster33) 
+asset.export(cluster34) 
+asset.export(cluster35) 
+asset.export(cluster36) 
+asset.export(cluster37) 
+asset.export(cluster38) 
+asset.export(cluster39) 
+asset.export(cluster40) 
+asset.export(cluster41) 
+asset.export(cluster42) 
+asset.export(cluster43) 
+asset.export(cluster44) 
+asset.export(cluster45) 
+asset.export(cluster46) 
+asset.export(cluster47) 
+asset.export(cluster48) 
+asset.export(cluster49) 
+asset.export(cluster50) 
+asset.export(cluster51) 
+asset.export(cluster52) 
+asset.export(cluster53) 
+asset.export(cluster54) 
+asset.export(cluster55) 
+asset.export(cluster56) 
+asset.export(cluster57) 
+asset.export(cluster58) 
+asset.export(cluster59) 
+asset.export(cluster60) 
+asset.export(cluster61) 
+asset.export(cluster62) 
+asset.export(cluster63) 
+asset.export(cluster64) 
+asset.export(cluster65) 
+asset.export(cluster66) 
+asset.export(cluster67) 
+asset.export(cluster68) 
+asset.export(cluster69) 
+asset.export(cluster70) 
+asset.export(cluster71) 
+asset.export(cluster72) 
+asset.export(cluster73) 
+asset.export(cluster74) 
+asset.export(cluster75) 
+asset.export(cluster76) 
+asset.export(cluster77) 
+asset.export(cluster78) 
+asset.export(cluster79) 
+asset.export(cluster80) 
+asset.export(cluster81) 
+asset.export(cluster82) 
+asset.export(cluster83) 
+asset.export(cluster84) 

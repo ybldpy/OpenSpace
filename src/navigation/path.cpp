@@ -40,6 +40,8 @@
 #include <ghoul/logging/logmanager.h>
 #include <ghoul/misc/interpolator.h>
 #include <glm/ext/quaternion_relational.hpp>
+#include <modules/imgui/imguimodule.h>
+#include <modules/imgui/include/guitravelcomponent.h>
 
 namespace {
     constexpr std::string_view _loggerCat = "Path";
@@ -146,8 +148,13 @@ std::vector<glm::dvec3> Path::controlPoints() const {
 CameraPose Path::traversePath(double dt, float speedScale) {
     double speed = speedAlongPath(_traveledDistance);
     speed *= static_cast<double>(speedScale);
+    gui::GuiTravelComponent& travelGui = global::moduleEngine->module<ImGUIModule>()->guiTravelComopnent();
+    if (travelGui.hasCustomerSpeed()) {
+        speed = travelGui.getCustomerSpeed();
+    }
+    
     double displacement = dt * speed;
-
+    LDEBUG(std::format("SPEED: {}, DISPLACEMENT {}\n", speed,displacement));
     const double prevDistance = _traveledDistance;
 
     _progressedTime += dt;
@@ -223,6 +230,8 @@ CameraPose Path::linearInterpolatedPose(double distance, double displacement) {
     // Actual displacement may not be bigger than remaining distance
     if (displacement > remainingDistance) {
         _traveledDistance = pathLength();
+        LDEBUG(std::format("exceed!!!!!!!!!!!!{}\n", _end.validBoundingSphere()));
+        
         pose.position = _end.position();
     }
     else {
@@ -232,12 +241,15 @@ CameraPose Path::linearInterpolatedPose(double distance, double displacement) {
 
         double newRemainingDistance = glm::length(pose.position - _end.position());
         double diff = remainingDistance - newRemainingDistance;
-        // Avoid remaining distances close to zero, or even negative
+        // Avoid remaining distances close to zero, or even negativez
+        printf("old: %f\n\nnew: %f\n\n", remainingDistance,newRemainingDistance);
         if (relativeDistance > 0.5 && diff < LengthEpsilon) {
             // The positions are too large, so we are not making progress because of
             // insufficient precision
             LWARNING("Quit camera path prematurely due to insufficient precision");
             _shouldQuit = true;
+            //_prevPose.position = _end.position();
+            //_prevPose.rotation = linearPathRotation(0.95);
             return _prevPose;
         }
     }

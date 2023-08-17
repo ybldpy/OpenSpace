@@ -146,6 +146,7 @@ void ScriptEngine::initializeLuaState(lua_State* state) {
 
     LDEBUG("Add OpenSpace modules");
     for (LuaLibrary& lib : _registeredLibraries) {
+        printf("--------------{%s}\n",lib.name.c_str());
         registerLuaLibrary(state, lib);
     }
 
@@ -158,7 +159,7 @@ ghoul::lua::LuaState* ScriptEngine::luaState() {
 
 void ScriptEngine::addLibrary(LuaLibrary library) {
     ZoneScoped;
-
+    LDEBUG("-------------{" + library.name + "}");
     auto sortFunc = [](const LuaLibrary::Function& lhs, const LuaLibrary::Function& rhs) {
         return lhs.name < rhs.name;
     };

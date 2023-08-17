@@ -53,6 +53,7 @@ void Camera::setPositionVec3(glm::dvec3 pos) {
 }
 
 void Camera::setRotation(glm::dquat rotation) {
+    //printf("123333333333333333333333333333333333333333333333");
     std::lock_guard _lock(_mutex);
     _rotation = std::move(rotation);
     _cachedViewDirection.isDirty = true;
@@ -101,7 +102,7 @@ glm::dvec3 Camera::eyePositionVec3() const {
         glm::dmat4(1.0),
         static_cast<glm::dvec3>(_position)
     );
-
+    
     glm::dmat4 invViewScale = glm::inverse(viewScaleMatrix());
 
     glm::dvec4 eyeInWorldSpace = invTranslationMatrix * invRotationMatrix *

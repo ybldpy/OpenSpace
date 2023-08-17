@@ -80,7 +80,8 @@ struct Event {
         CameraPathStarted,
         CameraPathFinished,
         CameraMovedPosition,
-        Custom
+        Custom,
+        OnPlanetArrival
     };
     constexpr explicit Event(Type type_) : type(type_) {}
 
@@ -593,6 +594,12 @@ struct CustomEvent : public Event {
 
     const tstring subtype;
     const tstring payload;
+};
+
+struct OnPlanetArrival : public Event
+{
+    static const Type type = Event::Type::OnPlanetArrival;
+    OnPlanetArrival();
 };
 
 } // namespace openspace::events

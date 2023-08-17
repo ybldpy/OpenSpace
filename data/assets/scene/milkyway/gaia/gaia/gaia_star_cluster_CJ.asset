@@ -1,0 +1,87 @@
+local speck = asset.syncedResource({
+  Name = "Stars Speck Files",
+  Type = "HttpSynchronization",
+  Identifier = "stars_du",
+  Version = 4
+})
+
+local sunspeck = asset.syncedResource({
+  Name = "Stars Speck Files",
+  Type = "HttpSynchronization",
+  Identifier = "digitaluniverse_sunstar_speck",
+  Version = 1
+})
+
+local colormaps = asset.syncedResource({
+  Name = "Stars Color Table",
+  Type = "HttpSynchronization",
+  Identifier = "stars_colormap",
+  Version = 3
+})
+
+local textures = asset.syncedResource({
+  Name = "Stars Textures",
+  Type = "HttpSynchronization",
+  Identifier = "stars_textures",
+  Version = 1
+})
+
+local stars = {
+  Identifier = "GaiaStarCluster",
+  Renderable = {
+    Type = "RenderableStars",
+    --File = speck .. "stars.speck",
+    File = "E:\\OpenSpace\\data\\assets\\scene\\milkyway\\gaia\\data\\Gaia_Star_85Clusters.speck",
+    Texture = textures .. "halo.png",
+    --ShapeTexture = textures .. "disc.png",
+    ColorMap = colormaps .. "colorbv.cmap",
+    OtherDataColorMap = "E:\\OpenSpace\\data\\assets\\scene\\milkyway\\gaia\\red2blue_CJ.cmap", --colormaps .. "viridis.cmap",
+    MagnitudeExponent = 6.2,
+    SizeComposition = "Distance Modulus",
+    RenderMethod = "Texture Based", -- or PSF
+    DataMapping = {
+      Bv = "colorb_v",
+      Luminance = "lum",
+      AbsoluteMagnitude = "absmag",
+      ApparentMagnitude = "appmag",
+      Vx = "vx",
+      Vy = "vy",
+      Vz = "vz",
+      Speed = "speed"
+    }
+  },
+  GUI = {
+    Name = "Gaia Star Cluster",
+    Path = "/Milky Way/Gaia",
+    Description = [[Census:  117,003 stars with 321 labels.<br> DU Version 7.8. This
+      star catalog is a combination of all available star catalogs, wherein we
+      choose the best distance available to place the stars around the Sun as
+      accurately as is possible. (Description from URL) <br><br> Data Reference:
+      XHIP: An Extended Hipparcos Compilation (Anderson E., Francis C. 2012);
+      Hipparcos Catalog (European Space Agency 1997); Gliese Catalog (Gliese and
+      Jahriess 1991)]],
+  }
+}
+
+
+
+asset.onInitialize(function()
+  openspace.addSceneGraphNode(stars)
+end)
+  
+asset.onDeinitialize(function()
+  openspace.removeSceneGraphNode(stars)
+end)
+  
+asset.export(stars)
+
+
+
+asset.meta = {
+  Name = "Stars",
+  Version = "2.1",
+  Description = [[Digital Universe asset for the stars.]],
+  Author = "Brian Abbott (AMNH)",
+  URL = "https://www.amnh.org/research/hayden-planetarium/digital-universe",
+  License = "AMNH Digital Universe"
+}

@@ -241,6 +241,7 @@ std::string_view toString(Event::Type type) {
         case Event::Type::CameraPathFinished: return "CameraPathFinished";
         case Event::Type::CameraMovedPosition: return "CameraMovedPosition";
         case Event::Type::Custom: return "Custom";
+        case Event::Type::OnPlanetArrival: return "OnPlanetArrival";
         default:
             throw ghoul::MissingCaseException();
     }
@@ -315,6 +316,9 @@ Event::Type fromString(std::string_view str) {
     }
     else if (str == "Custom") {
         return Event::Type::Custom;
+    }
+    else if (str == "OnPlanetArrival") {
+        return Event::Type::OnPlanetArrival;
     }
 
     throw ghoul::RuntimeError(fmt::format("Unknown event type '{}'", str));
@@ -595,6 +599,9 @@ void logAllEvents(const Event* e) {
             case Event::Type::Custom:
                 log(i, *static_cast<const CustomEvent*>(e));
                 break;
+            case Event::Type::OnPlanetArrival:
+                log(i, *static_cast<const CustomEvent*>(e));
+                break;
             default:
                 throw ghoul::MissingCaseException();
         }
@@ -743,5 +750,9 @@ CustomEvent::CustomEvent(std::string_view subtype_, std::string_view payload_)
     , subtype(subtype_)
     , payload(payload_)
 {}
+
+OnPlanetArrival::OnPlanetArrival():Event(type){
+
+}
 
 } // namespace openspace::events

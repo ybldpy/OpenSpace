@@ -4,7 +4,11 @@
     "base_keybindings",
     "events/toggle_sun",
     "scene/solarsystem/planets/earth/earth",
-    "scene/solarsystem/planets/earth/satellites/satellites"
+    "scene/solarsystem/planets/earth/satellites/satellites",
+    "scene/milkyway/gaia/gaia_center_85Clusters_CJ",
+    "scene/milkyway/gaia/gaia_cluster_label_CJ",
+    "scene/milkyway/gaia/gaia_gaiastars_cluster_CJ",
+    "scene/milkyway/gaia/gaia_star_cluster_CJ"
   ],
   "camera": {
     "altitude": 17000000.0,

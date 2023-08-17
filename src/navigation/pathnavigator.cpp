@@ -456,6 +456,9 @@ void PathNavigator::handlePathEnd() {
         _currentPath->startPoint().node(),
         _currentPath->endPoint().node()
     );
+
+    global::eventEngine->publishEvent<events::OnPlanetArrival>();
+    global::scriptEngine->queueScript("openspace.travelplanets.nextPlanet()", scripting::ScriptEngine::RemoteScripting::No);
 }
 
 void PathNavigator::findRelevantNodes() {

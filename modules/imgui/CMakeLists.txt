@@ -40,6 +40,7 @@ set(HEADER_FILES
   include/guispacetimecomponent.h
   include/imgui_include.h
   include/renderproperties.h
+  include/guitravelcomponent.h
 )
 source_group("Header Files" FILES ${HEADER_FILES})
 
@@ -58,6 +59,8 @@ set(SOURCE_FILES
   src/guiscenecomponent.cpp
   src/guispacetimecomponent.cpp
   src/renderproperties.cpp
+  src/guitravelcomponent.cpp
+  src/guitravelcomponent_lua.inl
 )
 source_group("Source Files" FILES ${SOURCE_FILES})
 
