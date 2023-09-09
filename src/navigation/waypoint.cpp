@@ -39,6 +39,15 @@ namespace {
 
     constexpr float LengthEpsilon = 1e-5f;
     constexpr const char* SunIdentifier = "Sun";
+    double surfaceFactor(const glm::dvec3& pos,const glm::dvec3& stepDir,const double& distance) {
+        
+        double factor = 1;
+        while (pos + stepDir * distance * factor == pos) {
+            factor *= 10;
+        }
+        return factor;
+
+    }
 } // namespace
 
 namespace openspace::interaction {
@@ -191,12 +200,14 @@ Waypoint computeWaypointFromNodeInfo(const NodeCameraStateSpec& spec,
             // If linear path, compute position along line form start to end point
             glm::dvec3 endNodePos = targetNode->worldPosition();
             stepDir = glm::normalize(prevPoint.position() - endNodePos);
+            //stepDir = glm::normalize(endNodePos-prevPoint.position());
+            //targetPos = targetNode->worldPosition() + stepDir * distanceFromNodeCenter*surfaceFactor(targetNode->worldPosition(),stepDir,distanceFromNodeCenter);
         }
         else {
             stepDir = computeGoodStepDirection(targetNode, prevPoint);
         }
 
-        targetPos = targetNode->worldPosition() + stepDir * distanceFromNodeCenter;
+        targetPos = targetNode->worldPosition() + stepDir * distanceFromNodeCenter * surfaceFactor(targetNode->worldPosition(), stepDir, distanceFromNodeCenter);
     }
 
     glm::dvec3 up = global::navigationHandler->camera()->lookUpVectorWorldSpace();

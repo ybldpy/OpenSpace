@@ -38,8 +38,8 @@ namespace openspace::gui {
 
     private:
 
-        void addNewPathNode(glm::dvec3 worldPos);
-        void addNewPathNode(std::string nodeIdentifier);
+        void addNewPathNode(const glm::dvec3& worldPos);
+        void addNewPathNode(const std::string& nodeIdentifier);
         void initTravel();
         double x = 0, y = 0, z = 0;
         int nodeIndex = 0;

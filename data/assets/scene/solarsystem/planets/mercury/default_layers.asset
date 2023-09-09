@@ -39,6 +39,7 @@ asset.require("./layers/colorlayers/casimap_02122015", false)
 asset.require("./layers/colorlayers/fesimap_02122015", false)
 asset.require("./layers/colorlayers/mgsimap_02122015", false)
 asset.require("./layers/colorlayers/ssimap_02122015", false)
+asset.require("./layers/colorlayers/lin",false)
 
 asset.require("./layers/heightlayers/messenger_dem_utah", true)
 
