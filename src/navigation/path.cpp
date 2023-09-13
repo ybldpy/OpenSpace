@@ -156,7 +156,7 @@ CameraPose Path::traversePath(double dt, float speedScale) {
     double displacement = dt * speed;
     LDEBUG(std::format("SPEED: {}, DISPLACEMENT {}\n", speed,displacement));
     const double prevDistance = _traveledDistance;
-
+    
     _progressedTime += dt;
     _traveledDistance += displacement;
 
@@ -217,6 +217,11 @@ void Path::resetPlaybackVariables() {
     _traveledDistance = 0.0;
     _progressedTime = 0.0;
     _shouldQuit = false;
+}
+
+void Path::anchorChange() {
+    _start = Waypoint(glm::inverse(glm::translate(glm::dmat4(1), _end.position())) * glm::dvec4(_start.position(),1), _start.rotation(), _start.nodeIdentifier());
+    _end = Waypoint(glm::dvec3(0), _end.rotation(), _end.nodeIdentifier());
 }
 
 CameraPose Path::linearInterpolatedPose(double distance, double displacement) {

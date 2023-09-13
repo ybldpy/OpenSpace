@@ -33,6 +33,8 @@
 #include <openspace/rendering/helper.h>
 #include <openspace/rendering/renderable.h>
 #include <openspace/rendering/renderengine.h>
+#include <openspace/navigation/navigationhandler.h>
+#include <openspace/navigation/orbitalnavigator.h>
 #include <openspace/scene/scene.h>
 #include <openspace/scene/timeframe.h>
 #include <openspace/util/memorymanager.h>
@@ -712,10 +714,17 @@ void SceneGraphNode::update(const UpdateData& data) {
     UpdateData newUpdateData = data;
 
     // Assumes _worldRotationCached and _worldScaleCached have been calculated for parent
-    _worldPositionCached = calculateWorldPosition();
+    originalWorldPos = calculateOriginalWorldPosition();
+    //_worldPositionCached = calculateWorldPosition();
     _worldRotationCached = calculateWorldRotation();
     _worldScaleCached = calculateWorldScale();
-
+    const SceneGraphNode* anchor = global::navigationHandler->orbitalNavigator().anchorNode();
+    _worldPositionCached = glm::inverse(glm::translate(glm::dmat4(1.0), anchor->getOriginalWorldPos())) * glm::dvec4(originalWorldPos, 1);
+    if (this == anchor) {
+        _worldPositionCached = glm::dvec3(0);
+        LDEBUG("yyyyyyy " + ghoul::to_string(_worldRotationCached));
+    }
+    //if (identifier() == "Earth") { printf("Node %s\n\n", ghoul::to_string(newUpdateData.modelTransform.translation).c_str()); };
     newUpdateData.modelTransform.translation = _worldPositionCached;
     newUpdateData.modelTransform.rotation = _worldRotationCached;
     newUpdateData.modelTransform.scale = _worldScaleCached;
@@ -724,6 +733,7 @@ void SceneGraphNode::update(const UpdateData& data) {
         glm::dmat4(1.0),
         newUpdateData.modelTransform.translation
     );
+    
     glm::dmat4 rotation = glm::dmat4(newUpdateData.modelTransform.rotation);
     glm::dmat4 scaling = glm::scale(glm::dmat4(1.0), newUpdateData.modelTransform.scale);
 
@@ -1108,6 +1118,10 @@ bool SceneGraphNode::hasGuiHintHidden() const {
     return _guiHidden;
 }
 
+glm::dvec3 SceneGraphNode::getOriginalWorldPos() const{
+    return originalWorldPos;
+}
+
 glm::dvec3 SceneGraphNode::calculateWorldPosition() const {
     // recursive up the hierarchy if there are parents available
     if (_parent) {
@@ -1116,6 +1130,19 @@ glm::dvec3 SceneGraphNode::calculateWorldPosition() const {
         const glm::dvec3 ws = _parent->worldScale();
         const glm::dvec3 p = position();
 
+        return wp + wrot * (ws * p);
+    }
+    else {
+        return position();
+    }
+}
+
+glm::dvec3 SceneGraphNode::calculateOriginalWorldPosition() const {
+    if (_parent) {
+        const glm::dvec3 wp = _parent->getOriginalWorldPos();
+        const glm::dmat3 wrot = _parent->worldRotationMatrix();
+        const glm::dvec3 ws = _parent->worldScale();
+        const glm::dvec3 p = position();
         return wp + wrot * (ws * p);
     }
     else {

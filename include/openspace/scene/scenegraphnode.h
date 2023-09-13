@@ -150,14 +150,17 @@ public:
     bool hasGuiHintHidden() const;
 
     static documentation::Documentation Documentation();
+    glm::dvec3 getOriginalWorldPos() const;
 
 private:
     glm::dvec3 calculateWorldPosition() const;
     glm::dmat3 calculateWorldRotation() const;
+    glm::dvec3 calculateOriginalWorldPosition() const;
     glm::dvec3 calculateWorldScale() const;
+    glm::dvec3 originalWorldPos;
     void computeScreenSpaceData(RenderData& newData);
     void renderDebugSphere(const Camera& camera, double size, glm::vec4 color);
-
+    bool initOriginalWorldPos = false;
     std::atomic<State> _state = State::Loaded;
     std::vector<ghoul::mm_unique_ptr<SceneGraphNode>> _children;
     SceneGraphNode* _parent = nullptr;

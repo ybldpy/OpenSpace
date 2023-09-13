@@ -79,6 +79,7 @@ public:
 
     // Relative mutators
     void rotate(glm::dquat rotation);
+    const CameraPose getCameraPose();
 
     // Accessors
     // Remove Vec3 from the name when psc is gone

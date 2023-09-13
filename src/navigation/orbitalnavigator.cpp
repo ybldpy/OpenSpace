@@ -980,12 +980,12 @@ void OrbitalNavigator::setFocusNode(const std::string& focusNode, bool) {
 }
 
 void OrbitalNavigator::setAnchorNode(const SceneGraphNode* anchorNode,
-                                     bool resetVelocitiesOnChange)
+    bool resetVelocitiesOnChange)
 {
     if (!_anchorNode) {
         _directlySetStereoDistance = true;
     }
-
+    printf("anchor /n");
     const bool changedAnchor = _anchorNode != anchorNode;
     _anchorNode = anchorNode;
 
@@ -998,7 +998,10 @@ void OrbitalNavigator::setAnchorNode(const SceneGraphNode* anchorNode,
     if (changedAnchor) {
         updateOnCameraInteraction(); // Mark a changed anchor node as a camera interaction
         updatePreviousAnchorState();
+        const CameraPose pose = _camera->getCameraPose();
+        _camera->setPose({ glm::dvec3(glm::inverse(glm::translate(glm::dmat4(1.0),_anchorNode->getOriginalWorldPos())) * glm::dvec4(pose.position,1)),pose.rotation });
     }
+    
 }
 
 void OrbitalNavigator::clearPreviousState() {

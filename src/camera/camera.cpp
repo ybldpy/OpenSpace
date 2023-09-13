@@ -93,6 +93,10 @@ const glm::dvec3& Camera::positionVec3() const {
     return _position;
 }
 
+const CameraPose Camera::getCameraPose() {
+    return { _position,_rotation };
+}
+
 glm::dvec3 Camera::eyePositionVec3() const {
     glm::dvec4 eyeInEyeSpace(0.0, 0.0, 0.0, 1.0);
 

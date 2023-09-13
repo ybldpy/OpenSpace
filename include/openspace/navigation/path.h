@@ -109,6 +109,7 @@ public:
      * Reset variables used to play back path
      */
     void resetPlaybackVariables();
+    void anchorChange();
 
 private:
     /**
