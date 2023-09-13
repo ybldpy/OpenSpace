@@ -7,7 +7,6 @@ local AddMercuryLayers = true
 local AddEarthLayers = true
 local DataFolder = openspace.absPath("${GLOBEBROWSING}")
 ----------------------------------------
-
 -- If you add layers for different planets than listed here, be sure to add an
 -- asset.require(...) statement in here similar to the ones that are used below
 

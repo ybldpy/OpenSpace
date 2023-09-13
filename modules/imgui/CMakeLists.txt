@@ -41,6 +41,7 @@ set(HEADER_FILES
   include/imgui_include.h
   include/renderproperties.h
   include/guitravelcomponent.h
+  include/guiassetfilebrowser.h
 )
 source_group("Header Files" FILES ${HEADER_FILES})
 
@@ -61,6 +62,7 @@ set(SOURCE_FILES
   src/renderproperties.cpp
   src/guitravelcomponent.cpp
   src/guitravelcomponent_lua.inl
+  src/guiassetfilebrowser.cpp
 )
 source_group("Source Files" FILES ${SOURCE_FILES})
 

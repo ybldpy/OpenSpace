@@ -357,11 +357,6 @@ ghoul::mm_unique_ptr<SceneGraphNode> SceneGraphNode::createFromDictionary(
             result->_transform.translation = Translation::createFromDictionary(
                 *p.transform->translation
             );
-            if (p.identifier.find("TestNode") != std::string::npos) {
-                Translation* t1 = result->_transform.translation.get();
-                printf("before -------------- %s \n\n", ghoul::to_string(t1->position()).c_str());
-
-            }
 
             // @TODO(abock, 2021-03-05)  I don't think this is necessary anymore as we
             // transitioned to throwing exceptions when the construction fails
@@ -417,10 +412,6 @@ ghoul::mm_unique_ptr<SceneGraphNode> SceneGraphNode::createFromDictionary(
     result->addPropertySubOwner(result->_transform.rotation.get());
     result->addPropertySubOwner(result->_transform.scale.get());
 
-    if (p.identifier.find("TestNode") != std::string::npos) {
-        Translation* t1 = result->_transform.translation.get();
-        printf("after-------------- %s \n\n", ghoul::to_string(t1->position()).c_str());
-    }
 
 
     if (p.timeFrame.has_value()) {
