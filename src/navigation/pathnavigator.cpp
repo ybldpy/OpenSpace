@@ -254,6 +254,8 @@ void PathNavigator::updateCamera(double deltaTime) {
     std::string currentAnchor = anchor()->identifier();
     if (currentAnchor != newAnchor) {
         global::navigationHandler->orbitalNavigator().setFocusNode(newAnchor, false);
+        _currentPath->anchorChange();
+        newPose = camera()->getCameraPose();
     }
 
     if (!_includeRoll) {
