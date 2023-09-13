@@ -40,6 +40,7 @@
 #include <modules/imgui/include/guiscenecomponent.h>
 #include <modules/imgui/include/guispacetimecomponent.h>
 #include <modules/imgui/include/guitravelcomponent.h>
+#include <modules/imgui/include/guiassetfilebrowser.h>
 #include <openspace/properties/scalar/boolproperty.h>
 #include <openspace/properties/scalar/floatproperty.h>
 #include <openspace/util/keys.h>
@@ -99,12 +100,13 @@ private:
     gui::GuiFilePathComponent _filePath;
     gui::GuiHelpComponent _help;
     gui::GuiTravelComponent _planetTravel;
+    gui::GuiAssetFileBrowser _assetFileBroswer;
 
     properties::BoolProperty _showHelpText;
     properties::FloatProperty _helpTextDelay;
 
     // The ordering of this array determines the order of components in the in-game menu
-    static constexpr int nComponents = 14;
+    static constexpr int nComponents = 15;
     std::array<gui::GuiComponent*, nComponents> _components = {
         &_sceneProperty,
         &_property,
@@ -119,7 +121,8 @@ private:
         &_memoryComponent,
         &_sceneView,
         &_filePath,
-        &_help
+        &_help,
+        &_assetFileBroswer
     };
 
     GLuint vao = 0;

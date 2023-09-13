@@ -11,6 +11,8 @@
 #include <openspace/navigation/orbitalnavigator.h>
 #include <openspace/engine/moduleengine.h>
 #include <queue>
+#include <openspace/util/collisionhelper.h>
+#include <openspace/util/screenlog.h>
 
 
 
@@ -45,6 +47,7 @@ namespace guitravelcomponent{
         double minSphere = DBL_MAX;
         const std::vector<openspace::SceneGraphNode*>& nodes = openspace::global::renderEngine->scene()->allSceneGraphNodes();
         double distance;
+        
         for (openspace::SceneGraphNode* node : nodes) {
             if (node->identifier().find(postfix) == std::string::npos) {
                 distance = glm::distance(node->worldPosition(), pos);
@@ -53,6 +56,7 @@ namespace guitravelcomponent{
                     closest = node;
                     minSphere = node->boundingSphere();
                 }
+                
             }
         }
         return closest;
