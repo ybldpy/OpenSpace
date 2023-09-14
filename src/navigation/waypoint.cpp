@@ -32,6 +32,7 @@
 #include <openspace/navigation/pathnavigator.h>
 #include <openspace/scene/scenegraphnode.h>
 #include <openspace/query/query.h>
+#include <openspace/scene/scenegraphnode.h>
 #include <ghoul/logging/logmanager.h>
 
 namespace {
@@ -48,6 +49,10 @@ namespace {
         return factor;
 
     }
+
+    
+
+
 } // namespace
 
 namespace openspace::interaction {
@@ -103,6 +108,10 @@ std::string Waypoint::nodeIdentifier() const {
 
 double Waypoint::validBoundingSphere() const {
     return _validBoundingSphere;
+}
+void Waypoint::changeToNewPosition() {
+    const SceneGraphNode* anchor = global::navigationHandler->orbitalNavigator().anchorNode();
+    _pose.position = node()->getOriginalWorldPos() + position() - anchor->getOriginalWorldPos();
 }
 
 Waypoint waypointFromCamera() {

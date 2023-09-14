@@ -207,7 +207,6 @@ bool PathNavigator::hasFinished() const {
 bool PathNavigator::isPlayingPath() const {
     return hasCurrentPath() && _isPlaying;
 }
-
 void PathNavigator::updateCamera(double deltaTime) {
     ghoul_assert(camera() != nullptr, "Camera must not be nullptr");
 
@@ -245,7 +244,10 @@ void PathNavigator::updateCamera(double deltaTime) {
     if (deltaTime > 0.1) {
         deltaTime = 0.01;
     }
-
+    if (coordinateSystemChange && _currentPath) {
+        _currentPath->anchorChange();
+        coordinateSystemChange = false;
+    }
     CameraPose newPose = _currentPath->traversePath(deltaTime, _speedScale);
     const std::string newAnchor = _currentPath->currentAnchor();
 
@@ -254,8 +256,10 @@ void PathNavigator::updateCamera(double deltaTime) {
     std::string currentAnchor = anchor()->identifier();
     if (currentAnchor != newAnchor) {
         global::navigationHandler->orbitalNavigator().setFocusNode(newAnchor, false);
-        _currentPath->anchorChange();
-        newPose = camera()->getCameraPose();
+        //_currentPath->anchorChange();
+        //newPose = camera()->getCameraPose();
+        //LDEBUG(ghoul::to_string(global::renderEngine->scene()->sceneGraphNode(newAnchor)->worldPosition()));
+        coordinateSystemChange = true;
     }
 
     if (!_includeRoll) {
@@ -271,6 +275,17 @@ void PathNavigator::updateCamera(double deltaTime) {
     }
 }
 
+Path PathNavigator::newPathFromNewCoordinate() {
+    createDic.setValue("Target",_currentPath->endPoint().nodeIdentifier());
+    ghoul::Dictionary startState;
+    startState.setValue("Anchor", _currentPath->startPoint().nodeIdentifier());
+    startState.setValue("Position", ghoul::to_string(_currentPath->startPoint().node()->worldPosition()));
+    startState.setValue("Aim", std::string(""));
+    createDic.setValue("StartState", startState);
+    Path newPath = createPathFromDictionary(createDic);
+    return newPath;
+}
+
 void PathNavigator::createPath(const ghoul::Dictionary& dictionary) {
     OpenSpaceEngine::Mode m = global::openSpaceEngine->currentMode();
     if (m == OpenSpaceEngine::Mode::SessionRecordingPlayback) {
@@ -283,6 +298,7 @@ void PathNavigator::createPath(const ghoul::Dictionary& dictionary) {
 
     try {
         _currentPath = std::make_unique<Path>(createPathFromDictionary(dictionary));
+        createDic = dictionary;
     }
     catch (const documentation::SpecificationError& e) {
         LERROR("Could not create camera path");
@@ -459,7 +475,7 @@ void PathNavigator::handlePathEnd() {
         _currentPath->endPoint().node()
     );
 
-    global::eventEngine->publishEvent<events::OnPlanetArrival>();
+    
     global::scriptEngine->queueScript("openspace.travelplanets.nextPlanet()", scripting::ScriptEngine::RemoteScripting::No);
 }
 

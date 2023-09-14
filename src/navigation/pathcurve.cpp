@@ -50,6 +50,12 @@ PathCurve::TooShortPathError::TooShortPathError(std::string error)
 
 PathCurve::~PathCurve() {}
 
+void PathCurve::translatePoints2NewCoordinateSytem(const SceneGraphNode* old,const SceneGraphNode* newNode) {
+    for (auto& i : _points) {
+        i = old->getOriginalWorldPos() + i - newNode->getOriginalWorldPos();
+    }
+}
+
 double PathCurve::length() const {
     return _totalLength;
 }
@@ -224,6 +230,8 @@ double PathCurve::approximatedDerivative(double u, double h) const {
     }
     return (0.5 / h) * glm::length(interpolate(u + h) - interpolate(u - h));
 }
+
+
 
 double PathCurve::arcLength(double limit) const {
     return arcLength(0.0, limit);

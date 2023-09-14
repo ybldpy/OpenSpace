@@ -298,6 +298,10 @@ namespace {
         // and do not have any impact on the actual function of the scene graph node
         std::optional<Gui> gui [[codegen::key("GUI")]];
     };
+
+    const openspace::SceneGraphNode* currentAnchorNode() {
+        return openspace::global::navigationHandler->orbitalNavigator().anchorNode();
+    }
 #include "scenegraphnode_codegen.cpp"
 } // namespace
 
@@ -688,6 +692,15 @@ void SceneGraphNode::traversePostOrder(const std::function<void(SceneGraphNode*)
     fn(this);
 }
 
+glm::dmat3 SceneGraphNode::calculateOriginalWorldRotation() const {
+    if (_parent) {
+        return _parent->worldRotationMatrix() * rotationMatrix();
+    }
+    else {
+        return rotationMatrix();
+    }
+}
+
 void SceneGraphNode::update(const UpdateData& data) {
     ZoneScoped;
     ZoneName(identifier().c_str(), identifier().size());
@@ -712,18 +725,14 @@ void SceneGraphNode::update(const UpdateData& data) {
         _transform.scale->update(data);
     }
     UpdateData newUpdateData = data;
-
+    updateLocalCoordinateSystem();
     // Assumes _worldRotationCached and _worldScaleCached have been calculated for parent
     originalWorldPos = calculateOriginalWorldPosition();
-    //_worldPositionCached = calculateWorldPosition();
+    originalWorldRotation = calculateOriginalWorldRotation();
+    _worldPositionCached = calculateWorldPosition();
     _worldRotationCached = calculateWorldRotation();
     _worldScaleCached = calculateWorldScale();
-    const SceneGraphNode* anchor = global::navigationHandler->orbitalNavigator().anchorNode();
-    _worldPositionCached = glm::inverse(glm::translate(glm::dmat4(1.0), anchor->getOriginalWorldPos())) * glm::dvec4(originalWorldPos, 1);
-    if (this == anchor) {
-        _worldPositionCached = glm::dvec3(0);
-        LDEBUG("yyyyyyy " + ghoul::to_string(_worldRotationCached));
-    }
+    //const SceneGraphNode* anchor = global::navigationHandler->orbitalNavigator().anchorNode();
     //if (identifier() == "Earth") { printf("Node %s\n\n", ghoul::to_string(newUpdateData.modelTransform.translation).c_str()); };
     newUpdateData.modelTransform.translation = _worldPositionCached;
     newUpdateData.modelTransform.rotation = _worldRotationCached;
@@ -1124,16 +1133,20 @@ glm::dvec3 SceneGraphNode::getOriginalWorldPos() const{
 
 glm::dvec3 SceneGraphNode::calculateWorldPosition() const {
     // recursive up the hierarchy if there are parents available
-    if (_parent) {
+    const SceneGraphNode* anchor = global::navigationHandler->orbitalNavigator().anchorNode();
+    if (this == anchor) {
+        return glm::dvec3(1e-6);
+    }
+    else if (_parent&&false) {
         const glm::dvec3 wp = _parent->worldPosition();
         const glm::dmat3 wrot = _parent->worldRotationMatrix();
         const glm::dvec3 ws = _parent->worldScale();
         const glm::dvec3 p = position();
-
-        return wp + wrot * (ws * p);
+        return wp + p;
+        //return wp + wrot * (ws * p);
     }
     else {
-        return position();
+        return originalWorldPos-anchor->getOriginalWorldPos();
     }
 }
 
@@ -1143,11 +1156,24 @@ glm::dvec3 SceneGraphNode::calculateOriginalWorldPosition() const {
         const glm::dmat3 wrot = _parent->worldRotationMatrix();
         const glm::dvec3 ws = _parent->worldScale();
         const glm::dvec3 p = position();
-        return wp + wrot * (ws * p);
+        //return wp + wrot * (ws * p);
+        return wp + p;
     }
     else {
         return position();
     }
+}
+
+void SceneGraphNode::updateLocalCoordinateSystem() {
+    const SceneGraphNode* anchor = global::navigationHandler->orbitalNavigator().anchorNode();
+    
+    if (previousAnchor && previousAnchor != anchor&&this == anchor) {
+        Camera* camera = global::navigationHandler->camera();
+        CameraPose cameraPose = camera->getCameraPose();
+        camera->setPose({originalWorldPos-camera->positionVec3(),cameraPose.rotation});
+    }
+    //LDEBUG(ghoul::to_string(camera->positionVec3()));
+    previousAnchor = anchor;
 }
 
 bool SceneGraphNode::isTimeFrameActive(const Time& time) const {
@@ -1163,9 +1189,15 @@ bool SceneGraphNode::isTimeFrameActive(const Time& time) const {
 
     return !_timeFrame || _timeFrame->isActive(time);
 }
-
+glm::dmat3 SceneGraphNode::getOriginalWorldRotation() const{
+    return originalWorldRotation;
+}
 glm::dmat3 SceneGraphNode::calculateWorldRotation() const {
     // recursive up the hierarchy if there are parents available
+    const SceneGraphNode* anchorNode = currentAnchorNode();
+    if (this == anchorNode&&0) {
+        return originalWorldRotation;
+    }
     if (_parent) {
         return _parent->worldRotationMatrix() * rotationMatrix();
     }
@@ -1183,6 +1215,8 @@ glm::dvec3 SceneGraphNode::calculateWorldScale() const {
         return scale();
     }
 }
+
+
 
 SceneGraphNode* SceneGraphNode::parent() const {
     return _parent;

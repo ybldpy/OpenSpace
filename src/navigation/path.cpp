@@ -98,6 +98,8 @@ namespace {
 
 namespace openspace::interaction {
 
+
+
 Path::Path(Waypoint start, Waypoint end, Type type,
            std::optional<double> duration)
     : _start(start), _end(end), _type(type)
@@ -135,6 +137,31 @@ Path::Path(Waypoint start, Waypoint end, Type type,
     }
 }
 
+void Path::copyFieldTo(Path& path) {
+    path.setPreviousCameraPos(_prevPose);
+    path.setShouldQuit(_shouldQuit);
+    path.setSpeedFactorFromDuration(_speedFactorFromDuration);
+    path.setTraveledDistance(_traveledDistance);
+    path.setProgressTime(_progressedTime);
+}
+
+void Path::setShouldQuit(const bool& b) {
+    _shouldQuit = b;
+}
+void Path::setProgressTime(const double& a) {
+    _progressedTime = a;
+}
+void Path::setTraveledDistance(const double& a) {
+    _traveledDistance = a;
+}
+void Path::setPreviousCameraPos(const CameraPose& pose) {
+    _prevPose = pose;
+}
+void Path::setSpeedFactorFromDuration(const double& a) {
+    _speedFactorFromDuration = a;
+}
+
+
 Waypoint Path::startPoint() const { return _start; }
 
 Waypoint Path::endPoint() const { return _end; }
@@ -154,7 +181,7 @@ CameraPose Path::traversePath(double dt, float speedScale) {
     }
     
     double displacement = dt * speed;
-    LDEBUG(std::format("SPEED: {}, DISPLACEMENT {}\n", speed,displacement));
+    //LDEBUG(std::format("SPEED: {}, DISPLACEMENT {}\n", speed,displacement));
     const double prevDistance = _traveledDistance;
     
     _progressedTime += dt;
@@ -220,8 +247,10 @@ void Path::resetPlaybackVariables() {
 }
 
 void Path::anchorChange() {
-    _start = Waypoint(glm::inverse(glm::translate(glm::dmat4(1), _end.position())) * glm::dvec4(_start.position(),1), _start.rotation(), _start.nodeIdentifier());
-    _end = Waypoint(glm::dvec3(0), _end.rotation(), _end.nodeIdentifier());
+    _start.changeToNewPosition();
+    _end.changeToNewPosition();
+    _curve->translatePoints2NewCoordinateSytem(_start.node(), _end.node());
+
 }
 
 CameraPose Path::linearInterpolatedPose(double distance, double displacement) {
@@ -247,7 +276,7 @@ CameraPose Path::linearInterpolatedPose(double distance, double displacement) {
         double newRemainingDistance = glm::length(pose.position - _end.position());
         double diff = remainingDistance - newRemainingDistance;
         // Avoid remaining distances close to zero, or even negativez
-        printf("old: %f\n\nnew: %f\n\n", remainingDistance,newRemainingDistance);
+        //printf("old: %f\n\nnew: %f\n\n", remainingDistance,newRemainingDistance);
         if (relativeDistance > 0.5 && diff < LengthEpsilon) {
             // The positions are too large, so we are not making progress because of
             // insufficient precision
@@ -504,6 +533,7 @@ void checkVisibilityAndShowMessage(const SceneGraphNode* node) {
 Path createPathFromDictionary(const ghoul::Dictionary& dictionary,
                               std::optional<Path::Type> forceType)
 {
+    
     const Parameters p = codegen::bake<Parameters>(dictionary);
 
     const std::optional<float> duration = p.duration;
