@@ -725,7 +725,7 @@ void SceneGraphNode::update(const UpdateData& data) {
         _transform.scale->update(data);
     }
     UpdateData newUpdateData = data;
-    updateLocalCoordinateSystem();
+    //updateLocalCoordinateSystem();
     // Assumes _worldRotationCached and _worldScaleCached have been calculated for parent
     originalWorldPos = calculateOriginalWorldPosition();
     originalWorldRotation = calculateOriginalWorldRotation();
@@ -1135,15 +1135,15 @@ glm::dvec3 SceneGraphNode::calculateWorldPosition() const {
     // recursive up the hierarchy if there are parents available
     const SceneGraphNode* anchor = global::navigationHandler->orbitalNavigator().anchorNode();
     if (this == anchor) {
-        return glm::dvec3(1e-6);
+        return glm::dvec3(1e-7);
     }
-    else if (_parent&&false) {
+    else if (_parent&&0) {
         const glm::dvec3 wp = _parent->worldPosition();
         const glm::dmat3 wrot = _parent->worldRotationMatrix();
         const glm::dvec3 ws = _parent->worldScale();
         const glm::dvec3 p = position();
-        return wp + p;
-        //return wp + wrot * (ws * p);
+        //return wp + p;
+        return wp + wrot * (ws * p);
     }
     else {
         return originalWorldPos-anchor->getOriginalWorldPos();
@@ -1156,8 +1156,7 @@ glm::dvec3 SceneGraphNode::calculateOriginalWorldPosition() const {
         const glm::dmat3 wrot = _parent->worldRotationMatrix();
         const glm::dvec3 ws = _parent->worldScale();
         const glm::dvec3 p = position();
-        //return wp + wrot * (ws * p);
-        return wp + p;
+        return wp + wrot * (ws * p);
     }
     else {
         return position();
@@ -1195,7 +1194,7 @@ glm::dmat3 SceneGraphNode::getOriginalWorldRotation() const{
 glm::dmat3 SceneGraphNode::calculateWorldRotation() const {
     // recursive up the hierarchy if there are parents available
     const SceneGraphNode* anchorNode = currentAnchorNode();
-    if (this == anchorNode&&0) {
+    if (this == anchorNode) {
         return originalWorldRotation;
     }
     if (_parent) {

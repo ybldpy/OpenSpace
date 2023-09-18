@@ -247,6 +247,7 @@ void PathNavigator::updateCamera(double deltaTime) {
     if (coordinateSystemChange && _currentPath) {
         _currentPath->anchorChange();
         coordinateSystemChange = false;
+        
     }
     CameraPose newPose = _currentPath->traversePath(deltaTime, _speedScale);
     const std::string newAnchor = _currentPath->currentAnchor();
@@ -266,7 +267,14 @@ void PathNavigator::updateCamera(double deltaTime) {
         removeRollRotation(newPose, deltaTime);
     }
 
-    camera()->setPose(newPose);
+    if(!coordinateSystemChange||1) camera()->setPose(newPose);
+    else {
+
+        glm::dmat4 translate = glm::translate(glm::dmat4(1.0), _currentPath->endPoint().node()->worldPosition());
+        newPose.position = glm::inverse(translate) * glm::dvec4(newPose.position,1);
+        camera()->setPose(newPose);
+    }
+    
 
     if (_currentPath->hasReachedEnd()) {
         LINFO("Reached target");

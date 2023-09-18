@@ -51,8 +51,9 @@ PathCurve::TooShortPathError::TooShortPathError(std::string error)
 PathCurve::~PathCurve() {}
 
 void PathCurve::translatePoints2NewCoordinateSytem(const SceneGraphNode* old,const SceneGraphNode* newNode) {
-    for (auto& i : _points) {
-        i = old->getOriginalWorldPos() + i - newNode->getOriginalWorldPos();
+    //glm::dmat4 translate = glm::translate(glm::dmat4(1),newNode->worldPosition())
+    for (glm::dvec3& i : _points) {
+        i = old->getOriginalWorldPos() - newNode->getOriginalWorldPos() + i;
     }
 }
 

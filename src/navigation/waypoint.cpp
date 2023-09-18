@@ -109,9 +109,8 @@ std::string Waypoint::nodeIdentifier() const {
 double Waypoint::validBoundingSphere() const {
     return _validBoundingSphere;
 }
-void Waypoint::changeToNewPosition() {
-    const SceneGraphNode* anchor = global::navigationHandler->orbitalNavigator().anchorNode();
-    _pose.position = node()->getOriginalWorldPos() + position() - anchor->getOriginalWorldPos();
+void Waypoint::changeToNewPosition(const SceneGraphNode* anchor) {
+    _pose.position = node()->getOriginalWorldPos() - anchor->getOriginalWorldPos() + _pose.position;
 }
 
 Waypoint waypointFromCamera() {

@@ -215,7 +215,7 @@ ImGUIModule::ImGUIModule()
     global::callback::mouseScrollWheel->emplace_back(
         [this](double, double posY, IsGuiWindow isGuiWindow) -> bool {
             ZoneScopedN("ImGUI");
-
+            
             if (!isGuiWindow || !_isEnabled) {
                 return false;
             }

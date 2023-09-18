@@ -247,8 +247,10 @@ void Path::resetPlaybackVariables() {
 }
 
 void Path::anchorChange() {
-    _start.changeToNewPosition();
-    _end.changeToNewPosition();
+    const SceneGraphNode* curAnchor = currentAnchor() == _start.nodeIdentifier() ? _start.node() : _end.node();
+    _start.changeToNewPosition(curAnchor);
+    _end.changeToNewPosition(curAnchor);
+    _prevPose.position = _start.node()->getOriginalWorldPos() - _end.node()->getOriginalWorldPos() + _prevPose.position;
     _curve->translatePoints2NewCoordinateSytem(_start.node(), _end.node());
 
 }
