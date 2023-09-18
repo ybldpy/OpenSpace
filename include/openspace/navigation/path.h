@@ -110,6 +110,13 @@ public:
      */
     void resetPlaybackVariables();
     void anchorChange();
+    void setShouldQuit(const bool& b);
+    void setProgressTime(const double& p);
+    void setTraveledDistance(const double& distance);
+    void setSpeedFactorFromDuration(const double& factor);
+    void setPreviousCameraPos(const CameraPose& pose);
+    void copyFieldTo(Path& path);
+    
 
 private:
     /**

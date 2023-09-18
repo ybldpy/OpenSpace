@@ -151,13 +151,18 @@ public:
 
     static documentation::Documentation Documentation();
     glm::dvec3 getOriginalWorldPos() const;
+    glm::dmat3 getOriginalWorldRotation() const;
 
 private:
     glm::dvec3 calculateWorldPosition() const;
     glm::dmat3 calculateWorldRotation() const;
     glm::dvec3 calculateOriginalWorldPosition() const;
     glm::dvec3 calculateWorldScale() const;
+    glm::dmat3 calculateOriginalWorldRotation() const;
+    void updateLocalCoordinateSystem();
     glm::dvec3 originalWorldPos;
+    glm::dmat3 originalWorldRotation;
+    const SceneGraphNode* previousAnchor;
     void computeScreenSpaceData(RenderData& newData);
     void renderDebugSphere(const Camera& camera, double size, glm::vec4 color);
     bool initOriginalWorldPos = false;

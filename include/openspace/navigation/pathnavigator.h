@@ -77,6 +77,7 @@ public:
     Path::Type defaultPathType() const;
     double minValidBoundingSphere() const;
     double findValidBoundingSphere(const SceneGraphNode* node) const;
+    Path newPathFromNewCoordinate();
 
     const std::vector<SceneGraphNode*>& relevantNodes();
 
@@ -106,8 +107,9 @@ private:
     std::unique_ptr<Path> _currentPath = nullptr;
     bool _isPlaying = false;
     bool _startSimulationTimeOnFinish = false;
-
+    bool coordinateSystemChange = false;
     bool _setCameraToEndNextFrame = false;
+    ghoul::Dictionary createDic;
 
     properties::OptionProperty _defaultPathType;
     properties::BoolProperty _includeRoll;

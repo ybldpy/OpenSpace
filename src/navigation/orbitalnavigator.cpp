@@ -987,6 +987,7 @@ void OrbitalNavigator::setAnchorNode(const SceneGraphNode* anchorNode,
     }
     printf("anchor /n");
     const bool changedAnchor = _anchorNode != anchorNode;
+    const SceneGraphNode* previous = _anchorNode;
     _anchorNode = anchorNode;
 
     // Need to reset velocities after the actual switch in anchor node,
@@ -999,7 +1000,10 @@ void OrbitalNavigator::setAnchorNode(const SceneGraphNode* anchorNode,
         updateOnCameraInteraction(); // Mark a changed anchor node as a camera interaction
         updatePreviousAnchorState();
         const CameraPose pose = _camera->getCameraPose();
-        _camera->setPose({ glm::dvec3(glm::inverse(glm::translate(glm::dmat4(1.0),_anchorNode->getOriginalWorldPos())) * glm::dvec4(pose.position,1)),pose.rotation });
+        //glm::dmat4 inversedModelTransform = glm::inverse(_anchorNode->modelTransform());
+        if (previous) {
+            _camera->setPose({ previous->getOriginalWorldPos()-_anchorNode->getOriginalWorldPos() + pose.position,pose.rotation});
+        }
     }
     
 }

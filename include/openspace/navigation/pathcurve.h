@@ -27,6 +27,7 @@
 
 #include <ghoul/glm.h>
 #include <ghoul/misc/exception.h>
+#include <openspace/scene/scenegraphnode.h>
 #include <vector>
 
 namespace openspace::interaction {
@@ -49,6 +50,7 @@ public:
      * Return the length of the curve, in meters
      */
     double length() const;
+    void translatePoints2NewCoordinateSytem(const SceneGraphNode* old,const SceneGraphNode* newNode);
 
     /**
      * Compute and return the position along the path at the specified relative

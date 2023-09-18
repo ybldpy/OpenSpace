@@ -48,6 +48,7 @@ public:
     SceneGraphNode* node() const;
     std::string nodeIdentifier() const;
     double validBoundingSphere() const;
+    void changeToNewPosition(const SceneGraphNode* anchor);
 
 private:
     CameraPose _pose;
