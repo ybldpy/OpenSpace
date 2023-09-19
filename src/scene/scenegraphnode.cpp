@@ -1135,9 +1135,10 @@ glm::dvec3 SceneGraphNode::calculateWorldPosition() const {
     // recursive up the hierarchy if there are parents available
     const SceneGraphNode* anchor = global::navigationHandler->orbitalNavigator().anchorNode();
     if (this == anchor) {
-        return glm::dvec3(1e-7);
+        LDEBUG(ghoul::to_string(glm::dvec3(0.0f)));
+        return glm::dvec3(0.0f);
     }
-    else if (_parent&&0) {
+    else if (0&&_parent) {
         const glm::dvec3 wp = _parent->worldPosition();
         const glm::dmat3 wrot = _parent->worldRotationMatrix();
         const glm::dvec3 ws = _parent->worldScale();
@@ -1146,7 +1147,7 @@ glm::dvec3 SceneGraphNode::calculateWorldPosition() const {
         return wp + wrot * (ws * p);
     }
     else {
-        return originalWorldPos-anchor->getOriginalWorldPos();
+        return originalWorldPos - anchor->getOriginalWorldPos();
     }
 }
 
@@ -1201,8 +1202,8 @@ glm::dmat3 SceneGraphNode::calculateWorldRotation() const {
         return _parent->worldRotationMatrix() * rotationMatrix();
     }
     else {
-        glm::dmat3 inversedWorldRotationMatrix = glm::inverse(anchorNode->getOriginalWorldRotation());
-        return inversedWorldRotationMatrix * originalWorldRotation;
+        
+        return rotationMatrix();
     }
 }
 
