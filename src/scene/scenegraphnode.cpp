@@ -1153,7 +1153,7 @@ glm::dvec3 SceneGraphNode::calculateWorldPosition() const {
 glm::dvec3 SceneGraphNode::calculateOriginalWorldPosition() const {
     if (_parent) {
         const glm::dvec3 wp = _parent->getOriginalWorldPos();
-        const glm::dmat3 wrot = _parent->worldRotationMatrix();
+        const glm::dmat3 wrot = _parent->getOriginalWorldRotation();
         const glm::dvec3 ws = _parent->worldScale();
         const glm::dvec3 p = position();
         return wp + wrot * (ws * p);
@@ -1201,7 +1201,8 @@ glm::dmat3 SceneGraphNode::calculateWorldRotation() const {
         return _parent->worldRotationMatrix() * rotationMatrix();
     }
     else {
-        return rotationMatrix();
+        glm::dmat3 inversedWorldRotationMatrix = glm::inverse(anchorNode->getOriginalWorldRotation());
+        return inversedWorldRotationMatrix * originalWorldRotation;
     }
 }
 
