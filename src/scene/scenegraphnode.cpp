@@ -1133,10 +1133,15 @@ glm::dvec3 SceneGraphNode::getOriginalWorldPos() const{
 
 glm::dvec3 SceneGraphNode::calculateWorldPosition() const {
     // recursive up the hierarchy if there are parents available
+    if (this->identifier() == "Earth") {
+        LDEBUG(ghoul::to_string(this->originalWorldRotation));
+    }
     const SceneGraphNode* anchor = global::navigationHandler->orbitalNavigator().anchorNode();
     if (this == anchor) {
-        LDEBUG(ghoul::to_string(glm::dvec3(0.0f)));
-        return glm::dvec3(0.0f);
+        //LDEBUG(ghoul::to_string(glm::dvec3(0.0f)));
+        
+        glm::dmat4 tranlate = glm::translate(glm::dmat4(1), anchor->getOriginalWorldPos());
+        return glm::inverse(tranlate) * glm::dvec4(originalWorldPos, 1);
     }
     else if (0&&_parent) {
         const glm::dvec3 wp = _parent->worldPosition();
@@ -1157,6 +1162,7 @@ glm::dvec3 SceneGraphNode::calculateOriginalWorldPosition() const {
         const glm::dmat3 wrot = _parent->getOriginalWorldRotation();
         const glm::dvec3 ws = _parent->worldScale();
         const glm::dvec3 p = position();
+        //return wp + p;
         return wp + wrot * (ws * p);
     }
     else {
@@ -1195,7 +1201,9 @@ glm::dmat3 SceneGraphNode::getOriginalWorldRotation() const{
 glm::dmat3 SceneGraphNode::calculateWorldRotation() const {
     // recursive up the hierarchy if there are parents available
     const SceneGraphNode* anchorNode = currentAnchorNode();
+    if (1) { return originalWorldRotation; }
     if (this == anchorNode) {
+        
         return originalWorldRotation;
     }
     if (_parent) {
