@@ -1133,9 +1133,7 @@ glm::dvec3 SceneGraphNode::getOriginalWorldPos() const{
 
 glm::dvec3 SceneGraphNode::calculateWorldPosition() const {
     // recursive up the hierarchy if there are parents available
-    if (this->identifier() == "Earth") {
-        LDEBUG(ghoul::to_string(this->originalWorldRotation));
-    }
+    
     const SceneGraphNode* anchor = global::navigationHandler->orbitalNavigator().anchorNode();
     if (this == anchor) {
         //LDEBUG(ghoul::to_string(glm::dvec3(0.0f)));

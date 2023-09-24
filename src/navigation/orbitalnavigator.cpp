@@ -1002,7 +1002,7 @@ void OrbitalNavigator::setAnchorNode(const SceneGraphNode* anchorNode,
         const CameraPose pose = _camera->getCameraPose();
         //glm::dmat4 inversedModelTransform = glm::inverse(_anchorNode->modelTransform());
         if (previous) {
-            _camera->setPose({ previous->getOriginalWorldPos()-_anchorNode->getOriginalWorldPos() + pose.position,pose.rotation});
+            //_camera->setPose({ previous->getOriginalWorldPos()-_anchorNode->getOriginalWorldPos() + pose.position,pose.rotation});
         }
     }
     

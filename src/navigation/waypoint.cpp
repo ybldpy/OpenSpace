@@ -41,12 +41,12 @@ namespace {
     constexpr float LengthEpsilon = 1e-5f;
     constexpr const char* SunIdentifier = "Sun";
     double surfaceFactor(const glm::dvec3& pos,const glm::dvec3& stepDir,const double& distance) {
-        
-        double factor = 1;
-        while (pos + stepDir * distance * factor == pos) {
-            factor *= 10;
-        }
-        return factor;
+        return 1;
+        //double factor = 1;
+        //while (pos + stepDir * distance * factor == pos) {
+          //  factor *= 10;
+        //}
+        //return factor;
 
     }
 
@@ -110,7 +110,7 @@ double Waypoint::validBoundingSphere() const {
     return _validBoundingSphere;
 }
 void Waypoint::changeToNewPosition(const SceneGraphNode* anchor) {
-    _pose.position = node()->getOriginalWorldPos() - anchor->getOriginalWorldPos() + _pose.position;
+    _pose.position = glm::inverse(glm::translate(glm::dmat4(1), anchor->getOriginalWorldPos())) * glm::dvec4(_pose.position, 1);
 }
 
 Waypoint waypointFromCamera() {

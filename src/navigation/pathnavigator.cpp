@@ -266,14 +266,8 @@ void PathNavigator::updateCamera(double deltaTime) {
     if (!_includeRoll) {
         removeRollRotation(newPose, deltaTime);
     }
-
-    if(!coordinateSystemChange||1) camera()->setPose(newPose);
-    else {
-
-        glm::dmat4 translate = glm::translate(glm::dmat4(1.0), _currentPath->endPoint().node()->worldPosition());
-        newPose.position = glm::inverse(translate) * glm::dvec4(newPose.position,1);
-        camera()->setPose(newPose);
-    }
+    LDEBUG(ghoul::to_string(newPose.position) + " " + ghoul::to_string(_currentPath->startPoint().node()->worldPosition()));
+    camera()->setPose(newPose);
     
 
     if (_currentPath->hasReachedEnd()) {
@@ -283,16 +277,7 @@ void PathNavigator::updateCamera(double deltaTime) {
     }
 }
 
-Path PathNavigator::newPathFromNewCoordinate() {
-    createDic.setValue("Target",_currentPath->endPoint().nodeIdentifier());
-    ghoul::Dictionary startState;
-    startState.setValue("Anchor", _currentPath->startPoint().nodeIdentifier());
-    startState.setValue("Position", ghoul::to_string(_currentPath->startPoint().node()->worldPosition()));
-    startState.setValue("Aim", std::string(""));
-    createDic.setValue("StartState", startState);
-    Path newPath = createPathFromDictionary(createDic);
-    return newPath;
-}
+
 
 void PathNavigator::createPath(const ghoul::Dictionary& dictionary) {
     OpenSpaceEngine::Mode m = global::openSpaceEngine->currentMode();
