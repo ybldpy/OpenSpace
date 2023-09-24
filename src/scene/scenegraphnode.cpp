@@ -1133,11 +1133,17 @@ glm::dvec3 SceneGraphNode::getOriginalWorldPos() const{
 
 glm::dvec3 SceneGraphNode::calculateWorldPosition() const {
     // recursive up the hierarchy if there are parents available
+    if (this->identifier() == "Earth") {
+        LDEBUG(ghoul::to_string(this->originalWorldRotation));
+    }
     const SceneGraphNode* anchor = global::navigationHandler->orbitalNavigator().anchorNode();
     if (this == anchor) {
-        return glm::dvec3(1e-7);
+        //LDEBUG(ghoul::to_string(glm::dvec3(0.0f)));
+        
+        glm::dmat4 tranlate = glm::translate(glm::dmat4(1), anchor->getOriginalWorldPos());
+        return glm::inverse(tranlate) * glm::dvec4(originalWorldPos, 1);
     }
-    else if (_parent&&0) {
+    else if (0&&_parent) {
         const glm::dvec3 wp = _parent->worldPosition();
         const glm::dmat3 wrot = _parent->worldRotationMatrix();
         const glm::dvec3 ws = _parent->worldScale();
@@ -1146,16 +1152,17 @@ glm::dvec3 SceneGraphNode::calculateWorldPosition() const {
         return wp + wrot * (ws * p);
     }
     else {
-        return originalWorldPos-anchor->getOriginalWorldPos();
+        return originalWorldPos - anchor->getOriginalWorldPos();
     }
 }
 
 glm::dvec3 SceneGraphNode::calculateOriginalWorldPosition() const {
     if (_parent) {
         const glm::dvec3 wp = _parent->getOriginalWorldPos();
-        const glm::dmat3 wrot = _parent->worldRotationMatrix();
+        const glm::dmat3 wrot = _parent->getOriginalWorldRotation();
         const glm::dvec3 ws = _parent->worldScale();
         const glm::dvec3 p = position();
+        //return wp + p;
         return wp + wrot * (ws * p);
     }
     else {
@@ -1194,13 +1201,16 @@ glm::dmat3 SceneGraphNode::getOriginalWorldRotation() const{
 glm::dmat3 SceneGraphNode::calculateWorldRotation() const {
     // recursive up the hierarchy if there are parents available
     const SceneGraphNode* anchorNode = currentAnchorNode();
+    if (1) { return originalWorldRotation; }
     if (this == anchorNode) {
+        
         return originalWorldRotation;
     }
     if (_parent) {
         return _parent->worldRotationMatrix() * rotationMatrix();
     }
     else {
+        
         return rotationMatrix();
     }
 }
