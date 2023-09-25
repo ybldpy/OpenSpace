@@ -162,7 +162,6 @@ private:
     void updateLocalCoordinateSystem();
     glm::dvec3 originalWorldPos;
     glm::dmat3 originalWorldRotation;
-    const SceneGraphNode* previousAnchor;
     void computeScreenSpaceData(RenderData& newData);
     void renderDebugSphere(const Camera& camera, double size, glm::vec4 color);
     bool initOriginalWorldPos = false;

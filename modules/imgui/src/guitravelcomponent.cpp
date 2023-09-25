@@ -84,6 +84,9 @@ namespace guitravelcomponent{
     }
 
 
+    int testCount = 0;
+
+
     
 
 
@@ -118,7 +121,15 @@ void GuiTravelComponent::render() {
         }
         
     }
-    
+    Camera* c = global::renderEngine->scene()->camera();
+    if (guitravelcomponent::testCount == 10) {
+        
+        //c->setPose({ c->getCameraPose().position,glm::quatLookAt(global::renderEngine->scene()->sceneGraphNode("Sun")->worldPosition(),c->lookUpVectorCameraSpace())});
+        guitravelcomponent::testCount = 0;
+    }
+    else {
+        guitravelcomponent::testCount++;
+    }
     std::sort(nodesName.begin(), nodesName.end(), [](const std::string& l, const std::string& r) ->bool {return l < r;});
 
     ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 10.0f);

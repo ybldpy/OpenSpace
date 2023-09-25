@@ -733,6 +733,7 @@ void OrbitalNavigator::updateCameraStateFromStates(double deltaTime) {
         // Bail out if the anchor node is not set
         return;
     }
+    
 
     const glm::dvec3 anchorPos = _anchorNode->worldPosition();
 
@@ -999,11 +1000,8 @@ void OrbitalNavigator::setAnchorNode(const SceneGraphNode* anchorNode,
     if (changedAnchor) {
         updateOnCameraInteraction(); // Mark a changed anchor node as a camera interaction
         updatePreviousAnchorState();
-        const CameraPose pose = _camera->getCameraPose();
-        //glm::dmat4 inversedModelTransform = glm::inverse(_anchorNode->modelTransform());
-        if (previous) {
-            //_camera->setPose({ previous->getOriginalWorldPos()-_anchorNode->getOriginalWorldPos() + pose.position,pose.rotation});
-        }
+        
+        
     }
     
 }

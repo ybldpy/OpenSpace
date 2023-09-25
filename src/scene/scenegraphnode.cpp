@@ -302,6 +302,13 @@ namespace {
     const openspace::SceneGraphNode* currentAnchorNode() {
         return openspace::global::navigationHandler->orbitalNavigator().anchorNode();
     }
+
+    const openspace::SceneGraphNode* previousAnchor = nullptr;
+
+    bool isCachedDataDirty() {
+
+        return previousAnchor&&currentAnchorNode() != previousAnchor;
+    }
 #include "scenegraphnode_codegen.cpp"
 } // namespace
 
@@ -724,6 +731,7 @@ void SceneGraphNode::update(const UpdateData& data) {
     if (_transform.scale) {
         _transform.scale->update(data);
     }
+    previousAnchor = currentAnchorNode();
     UpdateData newUpdateData = data;
     //updateLocalCoordinateSystem();
     // Assumes _worldRotationCached and _worldScaleCached have been calculated for parent
@@ -1103,7 +1111,11 @@ glm::dvec3 SceneGraphNode::scale() const {
     return _transform.scale->scaleValue();
 }
 
-glm::dvec3 SceneGraphNode::worldPosition() const {
+glm::dvec3 SceneGraphNode::worldPosition() const{
+    if (isCachedDataDirty())
+    {
+        return glm::inverse(glm::translate(glm::dmat4(1), currentAnchorNode()->getOriginalWorldPos())) * glm::dvec4(originalWorldPos, 1);
+    }
     return _worldPositionCached;
 }
 
@@ -1112,6 +1124,9 @@ const glm::dmat3& SceneGraphNode::worldRotationMatrix() const {
 }
 
 glm::dmat4 SceneGraphNode::modelTransform() const {
+    if (isCachedDataDirty()) {
+        return glm::translate(glm::dmat4(1), worldPosition()) * glm::scale(glm::dmat4(1), _worldScaleCached) * glm::dmat4(worldRotationMatrix());
+    }
     return _modelTransformCached;
 }
 

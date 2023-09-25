@@ -89,6 +89,7 @@ namespace {
         "than using the mouse interaction",
         openspace::properties::Property::Visibility::Developer
     };
+    bool flag = false;
 } // namespace
 
 namespace openspace::interaction {
@@ -202,8 +203,11 @@ void NavigationHandler::updateCamera(double deltaTime) {
     else if (mode == OpenSpaceEngine::Mode::CameraPath) {
         _pathNavigator.updateCamera(deltaTime);
         updateCameraTransitions();
+        flag = true;
     }
     else { // orbital navigator
+
+
         if (_disableJoystickInputs) {
             clearGlobalJoystickStates();
         }
@@ -212,7 +216,13 @@ void NavigationHandler::updateCamera(double deltaTime) {
             _keyboardInputState,
             deltaTime
         );
+        if (flag) {
+            LDEBUG("BEFORE"+ ghoul::to_string(ghoul::to_string(_camera->positionVec3())));
+        }
         _orbitalNavigator.updateCameraStateFromStates(deltaTime);
+        if (flag) {
+            LDEBUG("AFTER" + ghoul::to_string(ghoul::to_string(_camera->positionVec3())));
+        }
         updateCameraTransitions();
     }
 

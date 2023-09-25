@@ -53,7 +53,7 @@ void Camera::setPositionVec3(glm::dvec3 pos) {
 }
 
 void Camera::setRotation(glm::dquat rotation) {
-    //printf("123333333333333333333333333333333333333333333333");
+    
     std::lock_guard _lock(_mutex);
     _rotation = std::move(rotation);
     _cachedViewDirection.isDirty = true;
