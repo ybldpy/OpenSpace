@@ -986,7 +986,6 @@ void OrbitalNavigator::setAnchorNode(const SceneGraphNode* anchorNode,
     if (!_anchorNode) {
         _directlySetStereoDistance = true;
     }
-    printf("anchor /n");
     const bool changedAnchor = _anchorNode != anchorNode;
     const SceneGraphNode* previous = _anchorNode;
     _anchorNode = anchorNode;
@@ -1000,6 +999,11 @@ void OrbitalNavigator::setAnchorNode(const SceneGraphNode* anchorNode,
     if (changedAnchor) {
         updateOnCameraInteraction(); // Mark a changed anchor node as a camera interaction
         updatePreviousAnchorState();
+        if (previous) {
+            Camera* c = camera();
+            //c->setPositionVec3(previous->worldPosition()+c->positionVec3());
+        }
+
         
         
     }
