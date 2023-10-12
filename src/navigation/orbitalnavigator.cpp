@@ -1001,7 +1001,7 @@ void OrbitalNavigator::setAnchorNode(const SceneGraphNode* anchorNode,
         updatePreviousAnchorState();
         if (previous) {
             Camera* c = camera();
-            //c->setPositionVec3(previous->worldPosition()+c->positionVec3());
+            c->setPositionVec3(previous->worldPosition()+c->positionVec3());
         }
 
         

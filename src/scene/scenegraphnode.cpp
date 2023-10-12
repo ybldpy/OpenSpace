@@ -1114,7 +1114,7 @@ glm::dvec3 SceneGraphNode::scale() const {
 glm::dvec3 SceneGraphNode::worldPosition() const{
     if (isCachedDataDirty())
     {
-        //return glm::inverse(glm::translate(glm::dmat4(1), currentAnchorNode()->getOriginalWorldPos())) * glm::dvec4(originalWorldPos, 1);
+        return glm::inverse(glm::translate(glm::dmat4(1), currentAnchorNode()->getOriginalWorldPos())) * glm::dvec4(originalWorldPos, 1);
     }
     return _worldPositionCached;
 }
