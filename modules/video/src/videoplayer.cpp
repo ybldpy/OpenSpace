@@ -564,7 +564,8 @@ void VideoPlayer::handleMpvEvents() {
         }
         if (!checkMpvError(event->error)) {
             LWARNING(fmt::format(
-                "Error at mpv event : {} {}", event->event_id, event->reply_userdata
+                "Error at mpv event: {} {}",
+                static_cast<int>(event->event_id), event->reply_userdata
             ));
             break;
         }
@@ -739,9 +740,8 @@ void VideoPlayer::handleMpvProperties(mpv_event* event) {
             }
             break;
         }
-        default: {
+        default:
             throw ghoul::MissingCaseException();
-        }
     }
 }
 
