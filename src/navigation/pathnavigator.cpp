@@ -472,7 +472,7 @@ void PathNavigator::handlePathEnd() {
     );
 
     
-    global::scriptEngine->queueScript("openspace.travelplanets.nextPlanet()", scripting::ScriptEngine::RemoteScripting::No);
+    global::scriptEngine->queueScript("openspace.travelplanets.nextPlanet()", openspace::scripting::ScriptEngine::ShouldBeSynchronized::No, openspace::scripting::ScriptEngine::ShouldSendToRemote::Yes);
 }
 
 void PathNavigator::findRelevantNodes() {

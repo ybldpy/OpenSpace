@@ -27,7 +27,7 @@ namespace {
     void addAsset(const std::filesystem::path& filePath) {
         
         std::cout << "openspace.asset.add(\"" + pathCharacterReplace(filePath.parent_path().string() + "\\" + filePath.filename().string()) + "\")" << std::endl;
-        openspace::global::scriptEngine->queueScript("openspace.asset.add(\"" + pathCharacterReplace(filePath.parent_path().string() + "\\" + filePath.filename().string()) + "\")", openspace::scripting::ScriptEngine::RemoteScripting::Yes);
+        openspace::global::scriptEngine->queueScript("openspace.asset.add(\"" + pathCharacterReplace(filePath.parent_path().string() + "\\" + filePath.filename().string()) + "\")", openspace::scripting::ScriptEngine::ShouldBeSynchronized::No, openspace::scripting::ScriptEngine::ShouldSendToRemote::Yes);
     }
 
 }

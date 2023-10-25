@@ -230,7 +230,7 @@ void GuiTravelComponent::addNewPathNode(const glm::dvec3& worldPos) {
     int index = nodeIndex++;
     std::string t = "{Identifier = '" + std::to_string(index) + guitravelcomponent::postfix+"',BoundingSphere = 1000000.0, ReachFactor = 1.5,Transform = {Translation = {Type = 'StaticTranslation', Position = " + ghoul::to_string(worldPos) + "}}}";
     std::string t1 = "{Identifier = '" + std::to_string(index) + guitravelcomponent::postfix + "',Transform = {Translation = {Type = 'StaticTranslation', Position = " + ghoul::to_string(worldPos) + "}}}";
-    global::scriptEngine->queueScript("openspace.addSceneGraphNode(" + t + ")", scripting::ScriptEngine::RemoteScripting::No, [index, this](ghoul::Dictionary data) {
+    global::scriptEngine->queueScript("openspace.addSceneGraphNode(" + t + ")", openspace::scripting::ScriptEngine::ShouldBeSynchronized::No, openspace::scripting::ScriptEngine::ShouldSendToRemote::Yes,[index, this](ghoul::Dictionary data) {
         const std::string nodeName = guitravelcomponent::nodeName(index);
         while (!global::renderEngine->scene()->sceneGraphNode(nodeName)) {
             std::this_thread::sleep_for(std::chrono::milliseconds(1));
@@ -262,7 +262,7 @@ void GuiTravelComponent::nextPlanet() {
         std::string nodeIdentifier = next();
         if (global::renderEngine->scene()->sceneGraphNode(nodeIdentifier))
         {
-            global::scriptEngine->queueScript("openspace.pathnavigation.flyTo(\"" + nodeIdentifier + "\")", scripting::ScriptEngine::RemoteScripting::Yes);
+            global::scriptEngine->queueScript("openspace.pathnavigation.flyTo(\"" + nodeIdentifier + "\")", openspace::scripting::ScriptEngine::ShouldBeSynchronized::No, openspace::scripting::ScriptEngine::ShouldSendToRemote::Yes);
             break;
         }
     }
