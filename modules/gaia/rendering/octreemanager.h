@@ -62,6 +62,8 @@ public:
     OctreeManager() = default;
     ~OctreeManager() = default;
 
+   
+
     /**
      * Initializes a one layer Octree with root and 8 children that covers all stars.
      *
@@ -192,8 +194,8 @@ private:
     // DR2_rv [7.2M] - A MAX_DIST of 15 kPc works fine with down to 10 kSPN.
     // DR2_subset [42.9M] - A MAX_DIST of 100 kPc works fine with 20 kSPN.
     // DR2_full [1.7B] - A MAX_DIST of 250 kPc works fine with 150 kSPN.
-    size_t MAX_DIST = 2; // [kPc]
-    size_t MAX_STARS_PER_NODE = 2000;
+    size_t MAX_DIST = 60; // [kPc]
+    size_t MAX_STARS_PER_NODE = 6000;
 
     const int DEFAULT_INDEX = -1;
     const std::string BINARY_SUFFIX = ".bin";

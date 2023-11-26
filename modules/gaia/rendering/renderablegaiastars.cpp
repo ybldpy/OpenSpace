@@ -352,7 +352,9 @@ namespace {
             Speck,
             BinaryRaw,
             BinaryOctree,
-            StreamOctree
+            StreamOctree,
+            NSpeck,
+            NBinaryOctree
         };
         // [[codegen::verbatim(FileReaderOptionInfo.description)]]
         FileReader fileReaderOption;
@@ -521,7 +523,9 @@ RenderableGaiaStars::RenderableGaiaStars(const ghoul::Dictionary& dictionary)
         { gaia::FileReaderOption::Speck, "Speck" },
         { gaia::FileReaderOption::BinaryRaw, "BinaryRaw" },
         { gaia::FileReaderOption::BinaryOctree, "BinaryOctree" },
-        { gaia::FileReaderOption::StreamOctree, "StreamOctree" }
+        { gaia::FileReaderOption::StreamOctree, "StreamOctree" },
+        { gaia::FileReaderOption::NSpeck, "NSpeck" },
+        {gaia::FileReaderOption::NBinaryOctree,"NBinaryOctree"}
     });
     _fileReaderOption = codegen::map<gaia::FileReaderOption>(p.fileReaderOption);
 
@@ -1383,17 +1387,17 @@ void RenderableGaiaStars::checkGlErrors(const std::string& identifier) const {
     }
 }
 
-void RenderableGaiaStars::update(const UpdateData&) {
+void RenderableGaiaStars::update(const UpdateData& data) {
     const int shaderOption = _shaderOption;
     const int renderOption = _renderMode;
-
+    
     // Don't update anything if we are in the middle of a rebuild.
     if (_octreeManager.isRebuildOngoing()) {
         return;
     }
-
     if (_dataIsDirty) {
         LDEBUG("Regenerating data");
+        previousTime = data.time.j2000Seconds();
         // Reload data file. This may reconstruct the Octree as well.
         bool success = readDataFile();
         if (!success) {
@@ -1401,6 +1405,22 @@ void RenderableGaiaStars::update(const UpdateData&) {
         }
         _dataIsDirty = false;
         // Make sure we regenerate buffers if data has reloaded!
+        _buffersAreDirty = true;
+    }
+    else if(false&&data.time.j2000Seconds() - previousTime >= 3) {
+        
+        //_octreeManager.initOctree(_cpuRamBudgetInBytes);
+        std::ifstream instream(_files[(_index++)%11], std::ifstream::binary);
+        if (instream.good()) {
+            LDEBUG("+++++++++++");
+            _octreeManager.initOctree(_cpuRamBudgetInBytes, 80, 20000);
+            int nStars = _octreeManager.readFromFile(instream, true);
+            _nRenderedStars.setMaxValue(nStars);
+            LINFO(fmt::format("Dataset {}", nStars));
+            _totalDatasetSizeInBytes = nStars * (PositionSize + ColorSize + VelocitySize) * 4;
+            instream.close();
+        }
+        previousTime = data.time.j2000Seconds();
         _buffersAreDirty = true;
     }
 
@@ -2184,7 +2204,6 @@ bool RenderableGaiaStars::readDataFile() {
     int nReadStars = 0;
 
     _octreeManager.initOctree(_cpuRamBudgetInBytes);
-
     std::filesystem::path file = absPath(_filePath.value());
     LINFO(fmt::format("Loading data file: {}", file));
 
@@ -2197,7 +2216,7 @@ bool RenderableGaiaStars::readDataFile() {
             // Read raw speck file and construct Octree.
             nReadStars = readSpeckFile(file);
             break;
-        case gaia::FileReaderOption::BinaryRaw:
+        case gaia::FileReaderOption::BinaryRaw :
             // Stars are stored in an ordered binary file.
             nReadStars = readBinaryRawFile(file);
             break;
@@ -2208,6 +2227,12 @@ bool RenderableGaiaStars::readDataFile() {
         case gaia::FileReaderOption::StreamOctree:
             // Read Octree structure from file, without data.
             nReadStars = readBinaryOctreeStructureFile(file.string());
+            break;
+        case gaia::FileReaderOption::NSpeck:
+            nReadStars = readNspeckFile(file);
+            break;
+        case gaia::FileReaderOption::NBinaryOctree:
+            nReadStars = readBinaryOctreeFile(file);
             break;
         default:
             LERROR("Wrong FileReaderOption - no data file loaded");
@@ -2320,6 +2345,73 @@ int RenderableGaiaStars::readBinaryOctreeFile(const std::filesystem::path& fileP
         return nReadStars;
     }
     return nReadStars;
+}
+
+
+int RenderableGaiaStars::readNspeckFile(const std::filesystem::path& filePath) {
+
+    const int nReadValuesPerStar = 8;
+    std::vector<float> fullData;
+    std::ifstream fileStream(filePath);
+
+    if (!fileStream.good()) {
+        LERROR(fmt::format("Failed to open Speck file {}", filePath));
+        return 0;
+    }
+
+    std::string line;
+    int nNullArr = 0;
+    int nStars = 0;
+    float values[8];
+    memset(values, 0, nReadValuesPerStar * sizeof(float));
+    values[5] = 0.5f;
+    values[6] = values[5];
+    values[7] = values[6];
+    while (!fileStream.eof()) {
+        ++nStars;
+        memset(values, 0, 5 * sizeof(float));
+        std::getline(fileStream, line);
+        std::stringstream str(line);
+
+        for (int i = 0;i < 4;i++) {
+            str >> values[i];
+            if (i < 3) {
+                values[i] /= 100;
+            }
+        }
+        values[4] = values[3];
+        bool nullArray = true;
+        for (float f : values) {
+            if (f != 0.0) {
+                nullArray = false;
+                break;
+            }
+        }
+        if (nullArray) {
+            ++nNullArr;
+            continue;
+        }
+        
+
+        for (int i = 0;i < nReadValuesPerStar;i++) {
+            fullData.push_back(values[i]);
+        }
+    }
+
+    LINFO(fmt::format("{} out of {} read stars were null arrays", nNullArr, nStars));
+    for (size_t i = 0; i < fullData.size(); i += nReadValuesPerStar) {
+        auto first = fullData.begin() + i;
+        auto last = fullData.begin() + i + nReadValuesPerStar;
+        std::vector<float> starValues(first, last);
+        _octreeManager.insert(starValues);
+    }
+
+    _octreeManager.sliceLodData();
+    return static_cast<int>(fullData.size() / nReadValuesPerStar);
+
+
+
+
 }
 
 int RenderableGaiaStars::readBinaryOctreeStructureFile(

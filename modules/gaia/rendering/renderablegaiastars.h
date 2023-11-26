@@ -109,6 +109,8 @@ private:
      */
     int readBinaryOctreeStructureFile(const std::filesystem::path& folderPath);
 
+    int readNspeckFile(const std::filesystem::path& filePath);
+
     /**
      * Checks for any OpenGL errors and reports these to the log if _reportGlErrors is
      * set to true.
@@ -180,8 +182,13 @@ private:
     UniformCache(renderedTexture, screenSize, filterSize, sigma, pixelWeightThreshold,
         projection) _uniformCacheTM;
     std::unique_ptr<ghoul::opengl::Texture> _fboTexture;
-
+    double previousTime = -1;
     OctreeManager _octreeManager;
+    OctreeManager _nextOctreeManager;
+    bool _nextTree = false;
+    bool _reading = false;
+    std::string _files[11] = { "E:\\star\\data\\octree\\snap_0.bin","E:\\star\\data\\octree\\snap_1.bin", "E:\\star\\data\\octree\\snap_2.bin","E:\\star\\data\\octree\\snap_3.bin","E:\\star\\data\\octree\\snap_4.bin","E:\\star\\data\\octree\\snap_5.bin","E:\\star\\data\\octree\\snap_6.bin","E:\\star\\data\\octree\\snap_7.bin","E:\\star\\data\\octree\\snap_8.bin","E:\\star\\data\\octree\\snap_9.bin","E:\\star\\data\\octree\\snap_10.bin"};
+    int _index = 0;
     std::unique_ptr<ghoul::opengl::BufferBinding<
         ghoul::opengl::bufferbinding::Buffer::ShaderStorage>> _ssboIdxBinding;
     std::unique_ptr<ghoul::opengl::BufferBinding<

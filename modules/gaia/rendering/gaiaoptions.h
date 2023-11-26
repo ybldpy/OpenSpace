@@ -38,7 +38,9 @@ enum FileReaderOption {
     Speck = 1,
     BinaryRaw = 2,
     BinaryOctree = 3,
-    StreamOctree = 4
+    StreamOctree = 4,
+    NSpeck = 5,
+    NBinaryOctree = 6
 };
 
 enum ShaderOption {

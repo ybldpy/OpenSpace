@@ -429,6 +429,7 @@ void ConstructOctreeTask::constructOctreeFromSingleFile(
             "Error opening file: {} as output data file", _outFileOrFolderPath
         ));
     }
+    _octreeManager->clearAllData();
 }
 
 void ConstructOctreeTask::constructOctreeFromFolder(
