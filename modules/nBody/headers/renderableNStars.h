@@ -69,16 +69,8 @@ namespace openspace {
         GLuint workGroupX;
         GLuint workGroupY;
 //        GLint speedLocation;
-        GLint displacementLocation;
-        GLint maxIndexLocation;
-        GLint maxMassLocation;
-        GLint minMassLocation;
-        struct {
-            GLint widthLocation;
-            GLint heightLocation;
-        }positionTextureSizeLocation;
-        GLint kpcLocation;
-        GLint tranformationLocation;
+       
+        
         bool nextFileReady = false;
         // temp texture for storing updated position
         // after updating, assign it to position texture
@@ -100,7 +92,14 @@ namespace openspace {
         const int colorTextureBindingPoint = currentPositionTextureBindingPoint+1;
         std::unique_ptr<ghoul::opengl::ProgramObject> program;
         std::unique_ptr<ghoul::opengl::ProgramObject> computeProgram;
+        std::unique_ptr<ghoul::opengl::Texture> spriteTexture;
         std::shared_ptr<AsyncStarReader> starReader;
+
+        
+        UniformCache(kpc,transformation, positionTextureWidth,modelMat)vsUniforms;
+        UniformCache(spriteTexture, maxMass, minMass) fsUniforms;
+        UniformCache(displacment) computeShaderUniforms;
+
         void loadStars(const StarData& starData);
         void loadPositionTextures(const std::vector<float>& startStars, const std::vector<float>& endStars,const int& width,const int&height);
         //bool readDataFromFile(const std::filesystem::path& filePath);
@@ -108,6 +107,8 @@ namespace openspace {
         void calcWorkGroup(const int& numPixels,const int& localSizeX,const int& localSizeY);
         void calcPostitionTextureSize(const int& numStars);
         void initColorMap(const std::filesystem::path& filePath);
+
+        
         
         
         

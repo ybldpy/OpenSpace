@@ -15,6 +15,7 @@
 #include <ghoul/opengl/programobject.h>
 #include <ghoul/opengl/texture.h>
 #include <ghoul/opengl/textureunit.h>
+#include <ghoul/io/texture/texturereader.h>
 #include <openspace/util/timemanager.h>
 
 namespace {
@@ -93,22 +94,38 @@ namespace openspace {
 
        computeProgram = ghoul::opengl::ProgramObject::BuildComputeShader("NBodyStars",
            absPath("${MODULE_NBODY}/shaders/compute.glsl"));
-
-       starReader = std::make_shared<AsyncStarReader>();
-
        glGenBuffers(1, &vbo);
        glGenVertexArrays(1, &vao);
        glGenTextures(1, &startPositionTexture);
        glGenTextures(1, &targetPositionTexuture);
        glGenTextures(1, &currentPositionTexture);
        glGenTextures(1, &colorTexture);
-       displacementLocation = computeProgram->uniformLocation("displacement");
-       positionTextureSizeLocation.widthLocation = program->uniformLocation("positionTextureSize.width");
-       positionTextureSizeLocation.heightLocation = program->uniformLocation("positionTextureSize.height");
-       minMassLocation = program->uniformLocation("minMass");
-       maxMassLocation = program->uniformLocation("maxMass");
-       kpcLocation = program->uniformLocation("kpc");
-       tranformationLocation = program->uniformLocation("transformation");
+
+
+       starReader = std::make_shared<AsyncStarReader>();
+       spriteTexture = nullptr;
+       spriteTexture = ghoul::io::TextureReader::ref().loadTexture("D:/OpenSpace/OpenSpace/sync/http/stars_textures/1/halo.png",
+           2);
+       if (spriteTexture) {
+           LDEBUG(
+               fmt::format("Loaded texture from {}", absPath("D:/OpenSpace/OpenSpace/sync/http/stars_textures/1/halo.png"))
+           );
+           spriteTexture->bind();
+           spriteTexture->uploadTexture();
+           spriteTexture->setFilter(ghoul::opengl::Texture::FilterMode::AnisotropicMipMap);
+           // unbind
+           glBindTexture(GL_TEXTURE_2D, 0);
+       }
+
+
+       computeShaderUniforms.displacment = computeProgram->uniformLocation("displacement");
+       vsUniforms.positionTextureWidth = program->uniformLocation("positionTextureWidth");
+       fsUniforms.minMass = program->uniformLocation("minMass");
+       fsUniforms.maxMass = program->uniformLocation("maxMass");
+       vsUniforms.kpc = program->uniformLocation("kpc");
+       vsUniforms.transformation = program->uniformLocation("transformation");
+       vsUniforms.modelMat = program->uniformLocation("modelMat");
+       fsUniforms.spriteTexture = program->uniformLocation("spriteTexture");
        initColorMap("E:/star/data/color.cmap");
 
    }
@@ -117,6 +134,7 @@ namespace openspace {
        if (vbo != 0) {
            glDeleteBuffers(1, &vbo);
        }
+       
    }
 
 
@@ -142,7 +160,7 @@ namespace openspace {
        pastSecondsInInterval = pastSecondsInInterval + deltaTime;
        if (pastSecondsInInterval > interval)
        {
-           if (nextFileReady && intervalIndex < 19) {
+           if (nextFileReady && intervalIndex < 51) {
                loadStars(starReader->getStarData());
                intervalIndex += 1;
                nextFileReady = false;
@@ -158,7 +176,7 @@ namespace openspace {
        float displacement = pastSecondsInInterval / interval;
        //LDEBUG(fmt::format("{}", ghoul::to_string(displacement)));
        computeProgram->activate();
-       computeProgram->setUniform(displacementLocation, displacement);
+       computeProgram->setUniform(computeShaderUniforms.displacment, displacement);
        glBindImageTexture(startPositionTextureBindingPoint, startPositionTexture, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA32F);
        glBindImageTexture(targetPosTextureBindingPoint, targetPositionTexuture, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA32F);
        glBindImageTexture(currentPositionTextureBindingPoint, currentPositionTexture, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA32F);
@@ -203,14 +221,19 @@ namespace openspace {
        glEnableVertexAttribArray(0);
        glBindBuffer(GL_ARRAY_BUFFER, 0);
        program->activate();
-       program->setUniform(kpcLocation, (float)3.0e16);
+       program->setUniform(vsUniforms.kpc, (float)3.0e16);
        glm::dmat4 model = calcModelTransform(data);
        glm::dmat4 view = data.camera.combinedViewMatrix();
        glm::dmat4 projection = data.camera.projectionMatrix();
-       program->setUniform(tranformationLocation, projection*view*model);
-       program->setUniform(positionTextureSizeLocation.widthLocation, positionTextureSize.width);
-       program->setUniform(minMassLocation, minMass);
-       program->setUniform(maxMassLocation, maxMass);
+       ghoul::opengl::TextureUnit unit;
+       spriteTexture->bind();
+       unit.activate();
+       program->setUniform(fsUniforms.spriteTexture, unit);
+       program->setUniform(vsUniforms.transformation, projection*view*model);
+       //program->setUniform(vsUniforms.modelMat, model);
+       program->setUniform(vsUniforms.positionTextureWidth, positionTextureSize.width);
+       program->setUniform(fsUniforms.minMass, minMass);
+       program->setUniform(fsUniforms.maxMass, maxMass);
        //glEnable(GL_POINT_SPRITE);
        glEnable(GL_PROGRAM_POINT_SIZE);
        //program->setUniform(positionTextureSizeLocation.heightLocation, positionTextureSize.height);
@@ -218,11 +241,14 @@ namespace openspace {
        glBindImageTexture(colorTextureBindingPoint, colorTexture, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA32F);
        glEnable(GL_DEPTH_TEST);
       
-       glPointSize(10);
+       //glPointSize(6);
        glDrawArrays(GL_POINTS, 0, numStars);
        glBindVertexArray(0);
        //glDisable(GL_POINT_SPRITE);
        program->deactivate();
+       unit.deactivate();
+       
+
    }
 
    /*bool RenderableNStars::readDataFromFile(const std::filesystem::path& filePath) {
