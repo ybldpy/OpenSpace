@@ -11,12 +11,13 @@
 #include <openspace/properties/scalar/intproperty.h>
 #include <openspace/properties/vector/vec2property.h>
 #include <openspace/properties/vector/ivec2property.h>
-#include <modules/nBody/headers/asyncstarreader.h>
 
 
 #include <ghoul/opengl/bufferbinding.h>
 #include <ghoul/opengl/ghoul_gl.h>
 #include <ghoul/opengl/uniformcache.h>
+
+#include <modules/nBody/headers/asyncstarreader.h>
 
 namespace ghoul::filesystem { class File; }
 namespace ghoul::opengl {
@@ -92,7 +93,6 @@ namespace openspace {
         std::unique_ptr<ghoul::opengl::ProgramObject> program;
         std::unique_ptr<ghoul::opengl::ProgramObject> computeProgram;
         std::unique_ptr<ghoul::opengl::Texture> spriteTexture;
-        std::shared_ptr<AsyncStarReader> starReader;
         int frameIndex = 0;
         const int& maxFrameIndex = 20;
         UniformCache(kpc,transformation, positionTextureWidth,modelViewMat)vsUniforms;

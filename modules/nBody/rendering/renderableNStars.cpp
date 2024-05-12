@@ -101,8 +101,6 @@ namespace openspace {
        glGenTextures(1, &currentPositionTexture);
        glGenTextures(1, &colorTexture);
 
-
-       starReader = std::make_shared<AsyncStarReader>();
        spriteTexture = nullptr;
        spriteTexture = ghoul::io::TextureReader::ref().loadTexture("D:/OpenSpace/OpenSpace/sync/http/stars_textures/1/halo.png",
            2);
